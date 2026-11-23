@@ -190,14 +190,14 @@ body.video .pin.dim{opacity:.66}
   <button id="play" aria-label="再生">▶</button>
   <div id="sl"><div id="ticks"></div><input id="slider" type="range" min="0" max="191" step="1" value="191" aria-label="年代スライダー"></div>
   <div id="ylabel" class="vshow">1868年12月</div>
-  <div id="credit">地図: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院 淡色地図</a> ／ 史実: Wikipedia(CC BY-SA) ／ 位置: OpenStreetMap contributors ／ <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> ／ 版: 20261123f</div>
+  <div id="credit">地図: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院 淡色地図</a> ／ 史実: Wikipedia(CC BY-SA) ／ 位置: OpenStreetMap contributors ／ <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> ／ 版: 20261123g</div>
 </div>
 <aside id="sheet" class="ui" aria-live="polite"></aside>
 <div id="toast"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 "use strict";
-const BUILD='20261123f';
+const BUILD='20261123g';
 /* 古いページが端末に残っていたら、最新版のURLへ自動で切り替える */
 fetch('build.txt?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.text():BUILD).then(t=>{t=String(t).trim();if(t&&t!==BUILD&&!/^[<\s]/.test(t)){const u=new URL(location.href);if(u.searchParams.get('v')!==t){u.searchParams.set('v',t);location.replace(u.toString())}}}).catch(()=>{});
 const Q=new URLSearchParams(location.search);
@@ -466,6 +466,8 @@ function mapsTargets(p){
   // アプリ直呼び出しは「本物のAndroid版Chrome」だけ(失敗しても https に戻る)。
   // iPhone・アプリ内ブラウザでは、エラー画面を避けるため通常の https リンクだけを使う。
   const realChrome=/Android/i.test(ua)&&/Chrome\/\d+/.test(ua)&&!/; wv\)|Version\/\d|Instagram|Barcelona|Threads|FBAN|FBAV|FB_IAB|Line\/|EdgA|SamsungBrowser|OPR\//i.test(ua);
+  // iPhone の Safari/Chrome(アプリ内ブラウザ以外): Googleマップ公式のURLスキームで、目的地を直接渡す
+  if(/iPhone|iPad|iPod/i.test(ua)&&!INAPP)return {kind:'ios',url:'comgooglemaps://?daddr='+la+','+lo+'&directionsmode=walking',fallback:https};
   if(realChrome)return {kind:'android',url:'intent://navigation?q='+la+','+lo+'&mode=w#Intent;scheme=google.navigation;package=com.google.android.apps.maps;S.browser_fallback_url='+encodeURIComponent(https)+';end',fallback:https};
   return {kind:mobile?'mobile-https':'web',url:https,fallback:https};
 }
