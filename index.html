@@ -182,7 +182,7 @@ body.video .pin.dim{opacity:.66}
   <div class="howto"><b>使い方</b>
     <ul><li>📍を押して『Googleマップで開く』を押すと、Googleマップが立ち上がります。</li>
     <li>現在地と経路は、スマホのSafari/Chromeで開くと使えます。</li>
-    <li>Threadsなどのアプリ内で開いた場合は、右上のメニューから「ブラウザで開く」を選んでください。</li></ul></div>
+    <li>Threads・Instagramなどのアプリ内では、Googleマップに目的地が渡らず空欄になります。右上のメニューから「ブラウザで開く」を選んでください。</li></ul></div>
   <p>淡い色は、すでに出てきた史跡です。下のスライダーか▶で時代順にたどれます。<a href="kyoto_bakumatsu_32s.mp4" target="_blank" rel="noopener">32秒の動画</a></p>
 </div>
 <div id="card" class="ui vshow"></div>
@@ -190,14 +190,14 @@ body.video .pin.dim{opacity:.66}
   <button id="play" aria-label="再生">▶</button>
   <div id="sl"><div id="ticks"></div><input id="slider" type="range" min="0" max="191" step="1" value="191" aria-label="年代スライダー"></div>
   <div id="ylabel" class="vshow">1868年12月</div>
-  <div id="credit">地図: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院 淡色地図</a> ／ 史実: Wikipedia(CC BY-SA) ／ 位置: OpenStreetMap contributors ／ <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> ／ 版: 20261123e</div>
+  <div id="credit">地図: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院 淡色地図</a> ／ 史実: Wikipedia(CC BY-SA) ／ 位置: OpenStreetMap contributors ／ <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> ／ 版: 20261123f</div>
 </div>
 <aside id="sheet" class="ui" aria-live="polite"></aside>
 <div id="toast"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 "use strict";
-const BUILD='20261123e';
+const BUILD='20261123f';
 /* 古いページが端末に残っていたら、最新版のURLへ自動で切り替える */
 fetch('build.txt?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.text():BUILD).then(t=>{t=String(t).trim();if(t&&t!==BUILD&&!/^[<\s]/.test(t)){const u=new URL(location.href);if(u.searchParams.get('v')!==t){u.searchParams.set('v',t);location.replace(u.toString())}}}).catch(()=>{});
 const Q=new URLSearchParams(location.search);
@@ -488,7 +488,7 @@ function openSheet(p){
   <div class="badges"><span class="badge"><i class="${p.kind}"></i>${KIND[p.kind]}</span><span class="badge">${esc(yr)}</span><span class="badge conf-${esc(p.conf)}">確度: ${esc(p.conf)}</span>${ev?`<span class="badge">${esc(ev.title)}</span>`:''}${p.groups.map(g=>`<span class="badge">${esc(g)}</span>`).join('')}</div>
   ${p.kind==='W'?'<p class="est">位置は推定です。実際の場所と少しずれている可能性があります。</p>':''}
   ${INAPP?`<div class="inapp-route"><b>経路はブラウザで開くと使えます</b><br>このアプリの中では、Googleマップに目的地が渡らず空欄になります。右上のメニューから『ブラウザで開く』を選び、開いたページでもう一度この📍を押してください。</div>`:`<a class="route gmap" href="${routeURL(p)||'#'}" target="_blank" rel="noopener">Googleマップで開く</a>
-  <div class="routenote">Googleマップが立ち上がります。開かない場合は、右上のメニューから『ブラウザで開く』を選んでください。</div>`}
+  <div class="routenote">Googleマップが立ち上がります。Threads・Instagramなどのアプリ内では目的地が空欄になるため、右上のメニューから『ブラウザで開く』を選んでください。</div>`}
   <h4>由緒・史実</h4><p>${esc(p.why)}</p>
   <h4>検証・考証</h4><p>${esc(p.check)}</p>
   ${p.rumor?`<div class="rumor"><h4>噂・伝承(史実とは別)</h4><p>${esc(p.rumor)}</p></div>`:''}
