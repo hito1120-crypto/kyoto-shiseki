@@ -266,7 +266,7 @@ function init(d){
   $('#inapp-x').onclick=()=>{$('#inapp').hidden=true;document.body.classList.remove('inapp')};
   const closeLegend=()=>{const l=$('#legend');if(!l.hidden){l.hidden=true;$('#btn-legend').setAttribute('aria-pressed','false')}};
   map.on('click',()=>closeSheet());
-  if(!VIDEO)map.on('dragstart zoomstart',closeLegend);
+  if(!VIDEO)setTimeout(()=>map.on('dragstart zoomstart',closeLegend),1500);
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
   if(VIDEO){
     $('#legend').hidden=false;
