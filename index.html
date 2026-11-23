@@ -90,7 +90,7 @@ body.video #credit{display:none}
 .badge.conf-伝承{border-color:#7a4a9a;color:#5a3275}
 #sheet .route{display:flex;align-items:center;justify-content:center;min-height:52px;margin:6px 0 2px;border-radius:12px;background:#2b2620;color:#fff;font-weight:700;font-size:16px;text-decoration:none}
 #sheet .route:active{background:#444}
-#sheet .route.apple{background:#fff;color:#26221d;border:2px solid #2b2620;margin-top:8px}
+#sheet .routesmall{font-size:11px;line-height:1.5;color:var(--sub);margin:1px 2px 0}
 #sheet .routenote{font-size:13px;line-height:1.6;color:var(--sub);margin:2px 2px 0}
 #sheet .est{margin:0 0 8px;padding:7px 10px;border:1px dashed #444;border-radius:10px;background:#fff;font-size:13.5px;font-weight:600}
 #sheet h4{margin:14px 0 4px;font-size:13px;letter-spacing:.05em;color:var(--sub)}
@@ -200,7 +200,6 @@ body.video .pin.dim{opacity:.66}
 const Q=new URLSearchParams(location.search);
 const VIDEO=Q.has('video');
 const INAPP=!VIDEO&&/Instagram|Barcelona|Threads|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent);
-const IOS=/iPhone|iPad|iPod/i.test(navigator.userAgent);
 if(INAPP){document.body.classList.add('inapp');document.getElementById('inapp').hidden=false}
 if(VIDEO)document.body.classList.add('video');
 const KIND={R:"現存する建物",O:"石碑・石標",W:"跡地(位置は推定)"};
@@ -458,8 +457,8 @@ function openSheet(p){
   <h2>${esc(p.name)}</h2>
   <div class="badges"><span class="badge"><i class="${p.kind}"></i>${KIND[p.kind]}</span><span class="badge">${esc(yr)}</span><span class="badge conf-${esc(p.conf)}">確度: ${esc(p.conf)}</span>${ev?`<span class="badge">${esc(ev.title)}</span>`:''}${p.groups.map(g=>`<span class="badge">${esc(g)}</span>`).join('')}</div>
   ${p.kind==='W'?'<p class="est">位置は推定です。実際の場所と少しずれている可能性があります。</p>':''}
-  <a class="route" href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}&travelmode=walking">ここへの経路(徒歩)</a>${IOS?`<a class="route apple" href="https://maps.apple.com/?daddr=${p.lat},${p.lon}&dirflg=w">Appleマップで開く</a>`:''}
-  <div class="routenote">押すとGoogleマップが立ち上がります。開かない場合は、右上のメニューから『ブラウザで開く』を選んでください。${p.kind==='W'?'<br>※ 経路の目的地も推定位置です。':''}</div>
+  <a class="route" href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}&travelmode=walking">ここへの経路(徒歩)</a>
+  <div class="routenote">Googleマップが立ち上がります。${p.kind==='W'?'(目的地も推定位置です)':''}</div><div class="routesmall">開かない場合は、右上のメニューから『ブラウザで開く』を選んでください。</div>
   <h4>由緒・史実</h4><p>${esc(p.why)}</p>
   <h4>検証・考証</h4><p>${esc(p.check)}</p>
   ${p.rumor?`<div class="rumor"><h4>噂・伝承(史実とは別)</h4><p>${esc(p.rumor)}</p></div>`:''}
