@@ -1,0 +1,1759 @@
+{
+ "meta": {
+  "title": "京都・幕末史跡マップ",
+  "range": [
+   1853,
+   1868
+  ],
+  "note": "年が不明・諸説のものは『頃』として扱い、year_confに残している"
+ },
+ "events": [
+  {
+   "id": "ev_ansei",
+   "title": "安政の大獄",
+   "place": "京都ほか",
+   "t": 1858.667,
+   "label": "1858〜59年",
+   "conf": "定説",
+   "point": "井伊直弼が反対派を弾圧。京都では梅田雲浜が最初に捕らえられた",
+   "src": [
+    {
+     "label": "Wikipedia「安政の大獄」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%AE%89%E6%94%BF%E3%81%AE%E5%A4%A7%E7%8D%84"
+    },
+    {
+     "label": "Wikipedia「梅田雲浜」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%A2%85%E7%94%B0%E9%9B%B2%E6%B5%9C"
+    }
+   ]
+  },
+  {
+   "id": "ev_tenchu",
+   "title": "天誅の横行",
+   "place": "京都・四条河原ほか",
+   "t": 1862.783,
+   "label": "1862年10月",
+   "conf": "定説",
+   "point": "尊攘派による要人殺害が相次ぎ、本間精一郎は斬られて四条河原にさらされた",
+   "src": [
+    {
+     "label": "Wikipedia「本間精一郎」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%9C%AC%E9%96%93%E7%B2%BE%E4%B8%80%E9%83%8E"
+    },
+    {
+     "label": "Wikipedia「京都守護職」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%AE%88%E8%AD%B7%E8%81%B7"
+    }
+   ]
+  },
+  {
+   "id": "ev_mibu",
+   "title": "壬生浪士組の結成",
+   "place": "壬生",
+   "t": 1863.167,
+   "label": "1863年3月",
+   "conf": "定説",
+   "point": "近藤勇・芹沢鴨らが京に残り、壬生を拠点に壬生浪士組(のち新選組)を結成",
+   "src": [
+    {
+     "label": "Wikipedia「壬生浪士組」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%A3%AC%E7%94%9F%E6%B5%AA%E5%A3%AB%E7%B5%84"
+    },
+    {
+     "label": "Wikipedia「新選組」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%96%B0%E9%81%B8%E7%B5%84"
+    }
+   ]
+  },
+  {
+   "id": "ev_0818",
+   "title": "八月十八日の政変",
+   "place": "堺町御門ほか",
+   "t": 1863.746,
+   "label": "1863年9月",
+   "conf": "定説",
+   "point": "会津・薩摩が長州藩と急進派公家を京都から追放。七卿は妙法院へ集まり西へ",
+   "src": [
+    {
+     "label": "Wikipedia「八月十八日の政変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%85%AB%E6%9C%88%E5%8D%81%E5%85%AB%E6%97%A5%E3%81%AE%E6%94%BF%E5%A4%89"
+    },
+    {
+     "label": "Wikipedia「七卿落ち」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%B8%83%E5%8D%BF%E8%90%BD%E3%81%A1"
+    }
+   ]
+  },
+  {
+   "id": "ev_ikedaya",
+   "title": "池田屋事件",
+   "place": "三条小橋・池田屋",
+   "t": 1864.519,
+   "label": "1864年7月",
+   "conf": "定説",
+   "point": "新選組が旅籠・池田屋に集まった尊攘派を襲撃。長州・土佐の志士が多数死傷",
+   "src": [
+    {
+     "label": "Wikipedia「池田屋事件」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%B1%A0%E7%94%B0%E5%B1%8B%E4%BA%8B%E4%BB%B6"
+    }
+   ]
+  },
+  {
+   "id": "ev_kinmon",
+   "title": "禁門の変(蛤御門の変)",
+   "place": "京都御所一帯",
+   "t": 1864.635,
+   "label": "1864年8月",
+   "conf": "定説",
+   "point": "長州藩兵が御所周辺で会津・薩摩らと戦い敗走。市街約3万戸が焼けた",
+   "src": [
+    {
+     "label": "Wikipedia「禁門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E7%A6%81%E9%96%80%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "Wikipedia「蛤御門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%9B%A4%E5%BE%A1%E9%96%80%E3%81%AE%E5%A4%89"
+    }
+   ]
+  },
+  {
+   "id": "ev_satcho",
+   "title": "薩長同盟",
+   "place": "薩摩藩邸・近衛家別邸",
+   "t": 1866.183,
+   "label": "1866年3月",
+   "conf": "定説",
+   "point": "坂本龍馬らの仲介で、薩摩と長州が京都で同盟を結ぶ",
+   "src": [
+    {
+     "label": "Wikipedia「薩長同盟」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%96%A9%E9%95%B7%E5%90%8C%E7%9B%9F"
+    }
+   ]
+  },
+  {
+   "id": "ev_taisei",
+   "title": "大政奉還",
+   "place": "二条城",
+   "t": 1867.855,
+   "label": "1867年11月",
+   "conf": "定説",
+   "point": "徳川慶喜が二条城で政権返上を上表。翌日、朝廷が勅許",
+   "src": [
+    {
+     "label": "Wikipedia「大政奉還」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E6%94%BF%E5%A5%89%E9%82%84"
+    }
+   ]
+  },
+  {
+   "id": "ev_omiya",
+   "title": "近江屋事件",
+   "place": "河原町通蛸薬師下ル",
+   "t": 1867.941,
+   "label": "1867年12月",
+   "conf": "定説",
+   "point": "坂本龍馬と中岡慎太郎が近江屋で襲われる。実行犯は見廻組説が有力",
+   "src": [
+    {
+     "label": "Wikipedia「近江屋事件」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E6%B1%9F%E5%B1%8B%E4%BA%8B%E4%BB%B6"
+    }
+   ]
+  },
+  {
+   "id": "ev_abura",
+   "title": "油小路事件",
+   "place": "油小路七条",
+   "t": 1867.95,
+   "label": "1867年12月",
+   "conf": "定説",
+   "point": "新選組が伊東甲子太郎らを殺害し、御陵衛士は壊滅",
+   "src": [
+    {
+     "label": "Wikipedia「油小路事件」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%B2%B9%E5%B0%8F%E8%B7%AF%E4%BA%8B%E4%BB%B6"
+    },
+    {
+     "label": "Wikipedia「御陵衛士」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%BE%A1%E9%99%B5%E8%A1%9B%E5%A3%AB"
+    }
+   ]
+  }
+ ],
+ "notes": [
+  {
+   "id": "n_perry",
+   "short": "黒船は京都の外の出来事。京都では災いが続き、1855年に改元",
+   "title": "黒船のあと、京都は",
+   "t0": 1853.0,
+   "t1": 1858.583,
+   "label": "1853〜58年",
+   "text": "1853年のペリー来航は浦賀沖での出来事で、京都の外の話だ。ただ京都では黒船・大地震・内裏の炎上と続き、1855年に安政へ改元された。通商条約をめぐり、1858年には老中・堀田正睦が勅許を求めて京都に入っている。",
+   "outside": "京都外の出来事",
+   "src": [
+    {
+     "label": "Wikipedia「ペリー来航」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E3%83%9A%E3%83%AA%E3%83%BC%E6%9D%A5%E8%88%AA"
+    },
+    {
+     "label": "Wikipedia「孝明天皇」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%AD%9D%E6%98%8E%E5%A4%A9%E7%9A%87"
+    },
+    {
+     "label": "Wikipedia「日米修好通商条約」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%97%A5%E7%B1%B3%E4%BF%AE%E5%A5%BD%E9%80%9A%E5%95%86%E6%9D%A1%E7%B4%84"
+    }
+   ]
+  },
+  {
+   "id": "n_sakurada",
+   "short": "桜田門外は京都外の出来事。朝廷と幕府は和宮の降嫁で接近",
+   "title": "桜田門外のあとの公武合体",
+   "t0": 1860.167,
+   "t1": 1862.667,
+   "label": "1860〜62年",
+   "text": "1860年3月、井伊直弼が江戸城桜田門外で襲われた(京都外)。同年6月、京都所司代が和宮の降嫁を朝廷に願い出て、1862年2月に和宮と将軍家茂の婚礼が行われる。朝廷と幕府を近づける動きが京都から進んだ。",
+   "outside": "京都外の出来事",
+   "src": [
+    {
+     "label": "Wikipedia「桜田門外の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%A1%9C%E7%94%B0%E9%96%80%E5%A4%96%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "Wikipedia「孝明天皇」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%AD%9D%E6%98%8E%E5%A4%A9%E7%9A%87"
+    },
+    {
+     "label": "Wikipedia「和宮親子内親王」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%92%8C%E5%AE%AE%E8%A6%AA%E5%AD%90%E5%86%85%E8%A6%AA%E7%8E%8B"
+    }
+   ]
+  },
+  {
+   "id": "n_shugo",
+   "short": "要人暗殺が続き、会津藩主・松平容保が京都守護職に就く",
+   "title": "京都守護職の設置",
+   "t0": 1862.73,
+   "t1": 1862.78,
+   "label": "1862年9月",
+   "text": "京都では要人暗殺や商家への押し込みが続き、所司代と奉行所だけでは防げないと幕府は判断した。1862年9月24日、会津藩主・松平容保が京都守護職に就き、金戒光明寺が本陣となった。",
+   "src": [
+    {
+     "label": "Wikipedia「京都守護職」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%AE%88%E8%AD%B7%E8%81%B7"
+    },
+    {
+     "label": "Wikipedia「金戒光明寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E9%87%91%E6%88%92%E5%85%89%E6%98%8E%E5%AF%BA"
+    }
+   ]
+  },
+  {
+   "id": "n_choshu1",
+   "short": "禁門の変の責任を問い、幕府が長州征討へ",
+   "title": "禁門の変のあと",
+   "t0": 1864.638,
+   "t1": 1866.18,
+   "label": "1864〜66年",
+   "text": "禁門の変の責任を問い、幕府は長州征討軍を編成した。長州藩には家老の切腹などの降伏条件が示される。京都では一橋慶喜と会津・桑名が政局を主導する形になった。",
+   "src": [
+    {
+     "label": "Wikipedia「第一次長州征討」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E7%AC%AC%E4%B8%80%E6%AC%A1%E9%95%B7%E5%B7%9E%E5%BE%81%E8%A8%8E"
+    },
+    {
+     "label": "Wikipedia「禁門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E7%A6%81%E9%96%80%E3%81%AE%E5%A4%89"
+    }
+   ]
+  },
+  {
+   "id": "n_komei",
+   "short": "幕府は長州に苦戦。孝明天皇が亡くなる",
+   "title": "第二次長州征討と孝明天皇の死",
+   "t0": 1866.186,
+   "t1": 1867.853,
+   "label": "1866〜67年",
+   "text": "同盟の翌年、幕府は再び長州へ攻め込むが苦戦し、将軍家茂の死もあって休戦に至る。幕府の武力の限界が知れ渡った。1867年1月30日には孝明天皇が亡くなり、陵は泉涌寺内に築かれた。",
+   "src": [
+    {
+     "label": "Wikipedia「第二次長州征討」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E7%AC%AC%E4%BA%8C%E6%AC%A1%E9%95%B7%E5%B7%9E%E5%BE%81%E8%A8%8E"
+    },
+    {
+     "label": "Wikipedia「孝明天皇」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%AD%9D%E6%98%8E%E5%A4%A9%E7%9A%87"
+    }
+   ]
+  },
+  {
+   "id": "n_osei",
+   "short": "御所で王政復古の大号令。幕府は廃止に",
+   "title": "王政復古の大号令",
+   "t0": 1867.952,
+   "t1": 1868.068,
+   "label": "1868年1月",
+   "text": "1868年1月3日、京都御所で王政復古の大号令が出され、幕府の廃止と新しい三職が定められた。その夕方の小御所会議では、徳川慶喜の官位辞退と領地の返上が決まる。",
+   "src": [
+    {
+     "label": "Wikipedia「王政復古の大号令」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E7%8E%8B%E6%94%BF%E5%BE%A9%E5%8F%A4%E3%81%AE%E5%A4%A7%E5%8F%B7%E4%BB%A4"
+    },
+    {
+     "label": "Wikipedia「小御所会議」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%B0%8F%E5%BE%A1%E6%89%80%E4%BC%9A%E8%AD%B0"
+    }
+   ]
+  },
+  {
+   "id": "n_toba",
+   "short": "戦場は京都南郊。政権は新政府へ移る",
+   "title": "鳥羽・伏見の戦い",
+   "t0": 1868.071,
+   "t1": 1868.167,
+   "label": "1868年1月",
+   "text": "戦場は京都南郊の上鳥羽・下鳥羽・伏見などで、洛中ではない。慶喜はそれまでに大坂城へ移っており、会津・桑名藩の兵も同行した。京都の政権は新政府へ移り、戊辰戦争が始まる。",
+   "outside": "京都外の出来事",
+   "src": [
+    {
+     "label": "Wikipedia「鳥羽・伏見の戦い」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E9%B3%A5%E7%BE%BD%E3%83%BB%E4%BC%8F%E8%A6%8B%E3%81%AE%E6%88%A6%E3%81%84"
+    },
+    {
+     "label": "Wikipedia「戊辰戦争」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%88%8A%E8%BE%B0%E6%88%A6%E4%BA%89"
+    }
+   ]
+  }
+ ],
+ "pins": [
+  {
+   "id": "k001",
+   "name": "清水寺(成就院の月照)",
+   "kind": "R",
+   "lat": 34.99442,
+   "lon": 135.78448,
+   "event_id": "ev_ansei",
+   "year": 1858.583,
+   "year_label": "1858年",
+   "year_conf": "定説",
+   "groups": [
+    "志士(その他)"
+   ],
+   "why": "清水寺の塔頭・成就院の住職だった月照は、尊王攘夷派の僧として知られ、西郷隆盛と親しかった。",
+   "check": "安政の大獄で追われる身になった月照は、1858年に西郷とともに京都を離れ、のちに鹿児島の錦江湾に入水した(Wikipedia「月照」)。清水寺には月照の墓があり、命日に法要が営まれる。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「月照」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%9C%88%E7%85%A7"
+    },
+    {
+     "label": "Wikipedia「清水寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%B8%85%E6%B0%B4%E5%AF%BA"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/336641107"
+    }
+   ],
+   "pos_source": "osm:way/336641107"
+  },
+  {
+   "id": "k002",
+   "name": "梅田雲浜先生碑",
+   "kind": "O",
+   "lat": 34.99968,
+   "lon": 135.78343,
+   "event_id": "ev_ansei",
+   "year": 1858.667,
+   "year_label": "1858年頃",
+   "year_conf": "頃",
+   "groups": [
+    "志士(その他)"
+   ],
+   "why": "小浜藩出身の儒学者・梅田雲浜をしのぶ碑。雲浜は安政の大獄で最初に捕らえられた人物とされ、江戸へ送られて1859年10月に亡くなった。",
+   "check": "碑の位置は霊山の墓地一帯(OSM)。雲浜が最初の捕縛者とされる点と没年はWikipedia「梅田雲浜」。月日までは出典で確認できないため年を「頃」とした。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「梅田雲浜」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%A2%85%E7%94%B0%E9%9B%B2%E6%B5%9C"
+    },
+    {
+     "label": "Wikipedia「京都霊山護國神社」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E9%9C%8A%E5%B1%B1%E8%AD%B7%E5%9C%8B%E7%A5%9E%E7%A4%BE"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5273114470"
+    }
+   ],
+   "pos_source": "osm:node/5273114470"
+  },
+  {
+   "id": "k003",
+   "name": "梁川星巌・紅蘭の寓居跡",
+   "kind": "O",
+   "lat": 35.01775,
+   "lon": 135.77206,
+   "event_id": "ev_ansei",
+   "year": 1858.75,
+   "year_label": "1858年",
+   "year_conf": "定説",
+   "groups": [
+    "志士(その他)"
+   ],
+   "why": "漢詩人・梁川星巌と妻の紅蘭が暮らした場所を示す碑。星巌は安政の大獄の捕縛対象だったが、大量逮捕が始まる直前の1858年にコレラで急死した。",
+   "check": "碑名と位置はOSMによる。Wikipediaで京都での居所の位置までは確認できなかったため、跡地の細かな位置は参考程度に見てほしい。",
+   "rumor": "逮捕開始の3日前に亡くなったと「いわれる」が、出典自体が伝聞の書き方。",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「梁川星巌」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%A2%81%E5%B7%9D%E6%98%9F%E5%B7%8C"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/10608015328"
+    }
+   ],
+   "pos_source": "osm:node/10608015328"
+  },
+  {
+   "id": "k004",
+   "name": "彦根藩邸跡",
+   "kind": "O",
+   "lat": 35.00754,
+   "lon": 135.77036,
+   "event_id": "ev_ansei",
+   "year": 1858.417,
+   "year_label": "1858年頃",
+   "year_conf": "頃",
+   "groups": [
+    "幕府・彦根"
+   ],
+   "why": "彦根藩は幕末、京都河原町三条下ルに京都藩邸を置いていた。藩主の井伊直弼は大老として安政の大獄を主導した。",
+   "check": "「三条下ル」の位置はWikipedia「彦根藩」と碑の位置(OSM)で整合する。藩邸がいつからいつまであったか、敷地の範囲は出典で確認できず、年は「頃」とした。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「彦根藩」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%BD%A6%E6%A0%B9%E8%97%A9"
+    },
+    {
+     "label": "Wikipedia「安政の大獄」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%AE%89%E6%94%BF%E3%81%AE%E5%A4%A7%E7%8D%84"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/4641457112"
+    }
+   ],
+   "pos_source": "osm:node/4641457112"
+  },
+  {
+   "id": "k005",
+   "name": "金戒光明寺(会津藩本陣)",
+   "kind": "R",
+   "lat": 35.01947,
+   "lon": 135.78842,
+   "event_id": "ev_tenchu",
+   "year": 1862.73,
+   "year_label": "1862年9月",
+   "year_conf": "定説",
+   "groups": [
+    "会津"
+   ],
+   "why": "1862年9月に松平容保が京都守護職に就くと本陣に定められ、会津藩兵およそ千人が常駐して1年おきに交代した。",
+   "check": "本陣の建物配置など細部は出典で確認できていない。寺の山上墓地には会津藩の殉難者墓地がある(別ピン)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「金戒光明寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E9%87%91%E6%88%92%E5%85%89%E6%98%8E%E5%AF%BA"
+    },
+    {
+     "label": "Wikipedia「京都守護職」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%AE%88%E8%AD%B7%E8%81%B7"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/317681824"
+    }
+   ],
+   "pos_source": "osm:way/317681824"
+  },
+  {
+   "id": "k006",
+   "name": "會津藩殉難者墓所(金戒光明寺)",
+   "kind": "O",
+   "lat": 35.01824,
+   "lon": 135.78592,
+   "event_id": "ev_tenchu",
+   "year": 1862.75,
+   "year_label": "1862年〜",
+   "year_conf": "定説",
+   "groups": [
+    "会津"
+   ],
+   "why": "金戒光明寺の山上墓地にある、京都守護職時代と鳥羽・伏見の戦いで亡くなった会津藩士らの慰霊の墓地・碑。",
+   "check": "慰霊碑の建立は1907年で、当時のものではない(Wikipedia「金戒光明寺」)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「金戒光明寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E9%87%91%E6%88%92%E5%85%89%E6%98%8E%E5%AF%BA"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/3256771265"
+    }
+   ],
+   "pos_source": "osm:node/3256771265"
+  },
+  {
+   "id": "k007",
+   "name": "会津小鉄之墓",
+   "kind": "O",
+   "lat": 35.01981,
+   "lon": 135.78929,
+   "event_id": "ev_tenchu",
+   "year": 1863.0,
+   "year_label": "幕末頃",
+   "year_conf": "頃",
+   "groups": [
+    "会津"
+   ],
+   "why": "会津藩の中間部屋に出入りしていた侠客・会津小鉄(上坂仙吉)の墓。金戒光明寺の西雲院の庫裡前にある。",
+   "check": "墓の所在はWikipedia「金戒光明寺」で確認できる。小鉄の活動時期は「会津藩中間部屋に出入り」という以上の年が出典になく、年は「頃」とした。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「金戒光明寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E9%87%91%E6%88%92%E5%85%89%E6%98%8E%E5%AF%BA"
+    },
+    {
+     "label": "Wikipedia「会津小鉄」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BC%9A%E6%B4%A5%E5%B0%8F%E9%89%84"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/11038452507"
+    }
+   ],
+   "pos_source": "osm:node/11038452507"
+  },
+  {
+   "id": "k008",
+   "name": "京都所司代跡",
+   "kind": "O",
+   "lat": 35.01708,
+   "lon": 135.75045,
+   "event_id": "ev_tenchu",
+   "year": 1862.417,
+   "year_label": "幕末",
+   "year_conf": "頃",
+   "groups": [
+    "幕府・彦根"
+   ],
+   "why": "幕府が京都に置いた役職・所司代の役所と住居の跡。二条城の北に隣接して設けられ、二条城そのものは使われなかった。",
+   "check": "碑の名は「上屋敷跡」(OSM)。敷地の範囲は出典で確認できない。幕末に守護職が新設されたのは、所司代や奉行所だけでは治安を保てなかったためとされる(Wikipedia「京都守護職」)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「京都所司代」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E6%89%80%E5%8F%B8%E4%BB%A3"
+    },
+    {
+     "label": "Wikipedia「京都守護職」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%AE%88%E8%AD%B7%E8%81%B7"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/10698177132"
+    }
+   ],
+   "pos_source": "osm:node/10698177132"
+  },
+  {
+   "id": "k009",
+   "name": "本間精一郎 遭難之地",
+   "kind": "O",
+   "lat": 35.00537,
+   "lon": 135.77061,
+   "event_id": "ev_tenchu",
+   "year": 1862.783,
+   "year_label": "1862年10月",
+   "year_conf": "定説",
+   "groups": [
+    "志士(その他)"
+   ],
+   "why": "越後出身の志士・本間精一郎は、1862年10月13日(閏8月20日)に斬られ、首は四条河原にさらされた。",
+   "check": "実行犯は田中新兵衛・岡田以蔵と「言われる」にとどまり、確定していない。過激な言動が同志の反感と誤解を招いたことが背景にあるとされる(Wikipedia「本間精一郎」)。碑は木屋町通(OSM)。",
+   "rumor": "田中新兵衛・岡田以蔵が実行したという話は、出典でも伝聞扱い。",
+   "conf": "異説",
+   "sources": [
+    {
+     "label": "Wikipedia「本間精一郎」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%9C%AC%E9%96%93%E7%B2%BE%E4%B8%80%E9%83%8E"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/2548425949"
+    }
+   ],
+   "pos_source": "osm:node/2548425949"
+  },
+  {
+   "id": "k010",
+   "name": "武市瑞山寓居之跡",
+   "kind": "O",
+   "lat": 35.00957,
+   "lon": 135.77063,
+   "event_id": "ev_tenchu",
+   "year": 1863.0,
+   "year_label": "1862〜63年頃",
+   "year_conf": "頃",
+   "groups": [
+    "土佐"
+   ],
+   "why": "土佐勤王党を率いた武市瑞山(半平太)が、藩邸を出て三条木屋町に寓居を構え、朝廷への建白書を起草した。",
+   "check": "寓居の年は出典の記述順から文久2〜3年頃とみられるが、正確な年は確認できていない。碑の位置はOSM。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「武市瑞山」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%AD%A6%E5%B8%82%E7%91%9E%E5%B1%B1"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/7150889590"
+    }
+   ],
+   "pos_source": "osm:node/7150889590"
+  },
+  {
+   "id": "k011",
+   "name": "森寛斎宅蹟",
+   "kind": "O",
+   "lat": 35.01296,
+   "lon": 135.75813,
+   "event_id": "ev_tenchu",
+   "year": 1863.0,
+   "year_label": "幕末頃",
+   "year_conf": "頃",
+   "groups": [
+    "志士(その他)"
+   ],
+   "why": "京都を中心に活躍した画家・森寛斎は、自宅を勤王の志士たちの密会の場にしたという。",
+   "check": "「という」と伝聞で書かれており、年も不明。碑名と位置はOSMによる。",
+   "rumor": "",
+   "conf": "伝承",
+   "sources": [
+    {
+     "label": "Wikipedia「森寛斎」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%A3%AE%E5%AF%9B%E6%96%8E"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/12142208923"
+    }
+   ],
+   "pos_source": "osm:node/12142208923"
+  },
+  {
+   "id": "k012",
+   "name": "壬生寺",
+   "kind": "R",
+   "lat": 35.00184,
+   "lon": 135.74355,
+   "event_id": "ev_mibu",
+   "year": 1863.167,
+   "year_label": "1863年",
+   "year_conf": "定説",
+   "groups": [
+    "新選組"
+   ],
+   "why": "壬生狂言で知られる寺。新選組の前身・壬生浪士組の屯所は、寺の北にあった八木邸に置かれた。境内には近藤勇・土方歳三の銅像と、隊士の墓の壬生塚がある。",
+   "check": "近藤勇の墓とされるものは壬生寺以外にも会津若松市や三鷹市などにあり、壬生塚の墓がそれと断定されるわけではない(Wikipedia「壬生寺」)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「壬生寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%A3%AC%E7%94%9F%E5%AF%BA"
+    },
+    {
+     "label": "Wikipedia「新選組」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%96%B0%E9%81%B8%E7%B5%84"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/261806884"
+    }
+   ],
+   "pos_source": "osm:way/261806884"
+  },
+  {
+   "id": "k013",
+   "name": "旧八木家住宅(八木邸)",
+   "kind": "R",
+   "lat": 35.00227,
+   "lon": 135.74413,
+   "event_id": "ev_mibu",
+   "year": 1863.167,
+   "year_label": "1863年",
+   "year_conf": "定説",
+   "groups": [
+    "新選組"
+   ],
+   "why": "壬生浪士組が最初に屯所とした邸宅。1863年9月、近藤勇・土方歳三らがここで芹沢鴨と平山五郎を暗殺したと伝えられる。",
+   "check": "京都市指定有形文化財として現存することはWikipedia「八木家住宅」の曖昧さ回避ページで確認。芹沢暗殺の経緯は新選組の記述による。公開時間など現地情報は未確認なので、訪問前に案内を確かめてほしい。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「八木家住宅」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%85%AB%E6%9C%A8%E5%AE%B6%E4%BD%8F%E5%AE%85"
+    },
+    {
+     "label": "Wikipedia「新選組」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%96%B0%E9%81%B8%E7%B5%84"
+    },
+    {
+     "label": "Wikipedia「芹沢鴨」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%8A%B9%E6%B2%A2%E9%B4%A8"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/627332770"
+    }
+   ],
+   "pos_source": "osm:way/627332770"
+  },
+  {
+   "id": "k014",
+   "name": "壬生塚(新選組隊士慰霊塔・近藤勇胸像)",
+   "kind": "O",
+   "lat": 35.00174,
+   "lon": 135.744,
+   "event_id": "ev_mibu",
+   "year": 1863.417,
+   "year_label": "幕末頃",
+   "year_conf": "頃",
+   "groups": [
+    "新選組"
+   ],
+   "why": "壬生寺の境内にある、新選組隊士を弔う壬生塚。近藤勇と土方歳三の銅像もある。",
+   "check": "胸像や慰霊塔は後年のもの。近藤勇の墓と断定できるかは別問題(壬生寺ピン参照)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「壬生寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%A3%AC%E7%94%9F%E5%AF%BA"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5922030850"
+    }
+   ],
+   "pos_source": "osm:node/5922030850"
+  },
+  {
+   "id": "k015",
+   "name": "角屋(島原)",
+   "kind": "R",
+   "lat": 34.99233,
+   "lon": 135.74316,
+   "event_id": "ev_mibu",
+   "year": 1863.417,
+   "year_label": "幕末頃",
+   "year_conf": "頃",
+   "groups": [
+    "新選組",
+    "長州"
+   ],
+   "why": "島原で唯一現存する揚屋の遺構で、国の重要文化財。久坂玄瑞や西郷隆盛ら勤王の志士が密議を交わし、資金調達の接待にも使われた。新選組も遊興した。",
+   "check": "建物前に「久坂玄瑞の密議の角屋」「新撰組刀傷の角屋」の石碑が建つ(Wikipedia「角屋」)。刀傷の由来の細部は出典で確認できなかった。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「角屋」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%A7%92%E5%B1%8B"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/259136406"
+    }
+   ],
+   "pos_source": "osm:way/259136406"
+  },
+  {
+   "id": "k016",
+   "name": "島原大門",
+   "kind": "R",
+   "lat": 34.99256,
+   "lon": 135.74504,
+   "event_id": "ev_mibu",
+   "year": 1863.417,
+   "year_label": "幕末頃",
+   "year_conf": "頃",
+   "groups": [
+    "新選組"
+   ],
+   "why": "花街・島原の東入口にあたる大門で、京都市の登録有形文化財。",
+   "check": "幕末の具体的な出来事と直接結びつく出典がなく、島原の入口としての紹介にとどめる。西門は1732年の設置(Wikipedia)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「島原大門」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%B3%B6%E5%8E%9F%E5%A4%A7%E9%96%80"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/261807023"
+    }
+   ],
+   "pos_source": "osm:way/261807023"
+  },
+  {
+   "id": "k017",
+   "name": "妙法院(七卿落ち)",
+   "kind": "R",
+   "lat": 34.99036,
+   "lon": 135.77561,
+   "event_id": "ev_0818",
+   "year": 1863.746,
+   "year_label": "1863年9月",
+   "year_conf": "定説",
+   "groups": [
+    "公家・朝廷",
+    "長州"
+   ],
+   "why": "八月十八日の政変で京都を追われた三条実美ら7人の公家は、長州藩兵に付き添われて妙法院に集まり、西へ向かった。",
+   "check": "境内の西南隅に高さ約2.5メートルの七卿落碑が建つ(Wikipedia「七卿落ち」「妙法院」)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「七卿落ち」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%B8%83%E5%8D%BF%E8%90%BD%E3%81%A1"
+    },
+    {
+     "label": "Wikipedia「妙法院」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%A6%99%E6%B3%95%E9%99%A2"
+    }
+   ],
+   "pos_source": "wikipedia座標"
+  },
+  {
+   "id": "k018",
+   "name": "七卿碑",
+   "kind": "O",
+   "lat": 34.98974,
+   "lon": 135.77501,
+   "event_id": "ev_0818",
+   "year": 1863.746,
+   "year_label": "1863年9月",
+   "year_conf": "定説",
+   "groups": [
+    "公家・朝廷"
+   ],
+   "why": "七卿落ちを記念する碑。妙法院の境内にあるとされる七卿落碑に当たる。",
+   "check": "碑の位置はOSM。妙法院ピンと同じ碑を指す可能性が高いが、OSMの点が別に2つあり確認しきれていない。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「七卿落ち」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%B8%83%E5%8D%BF%E8%90%BD%E3%81%A1"
+    },
+    {
+     "label": "Wikipedia「妙法院」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%A6%99%E6%B3%95%E9%99%A2"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/9827095163"
+    }
+   ],
+   "pos_source": "osm:node/9827095163"
+  },
+  {
+   "id": "k019",
+   "name": "堺町御門",
+   "kind": "R",
+   "lat": 35.01769,
+   "lon": 135.76316,
+   "event_id": "ev_0818",
+   "year": 1863.746,
+   "year_label": "1863年9月",
+   "year_conf": "定説",
+   "groups": [
+    "長州"
+   ],
+   "why": "京都御苑の南の正門。八月十八日の政変では、この門の警衛から外された長州藩士が出入りを禁じられた(堺町御門の変)。翌年の禁門の変でも戦場になった。",
+   "check": "門が正門として行幸に使われることは京都御苑の項で確認。禁門の変での戦闘は、真木・久坂隊が堺町御門を攻めたとする蛤御門の変の記述による。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「京都御苑」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%BE%A1%E8%8B%91"
+    },
+    {
+     "label": "Wikipedia「八月十八日の政変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%85%AB%E6%9C%88%E5%8D%81%E5%85%AB%E6%97%A5%E3%81%AE%E6%94%BF%E5%A4%89"
+    },
+    {
+     "label": "Wikipedia「蛤御門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%9B%A4%E5%BE%A1%E9%96%80%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5556969796"
+    }
+   ],
+   "pos_source": "osm:node/5556969796"
+  },
+  {
+   "id": "k020",
+   "name": "池田屋事件之址",
+   "kind": "O",
+   "lat": 35.00894,
+   "lon": 135.76989,
+   "event_id": "ev_ikedaya",
+   "year": 1864.519,
+   "year_label": "1864年7月",
+   "year_conf": "定説",
+   "groups": [
+    "新選組",
+    "長州",
+    "土佐"
+   ],
+   "why": "三条小橋の旅籠・池田屋に集まった尊攘派を新選組が襲った事件の跡。最初に踏み込んだのは近藤勇・沖田総司・永倉新八・藤堂平助の4人とされる。",
+   "check": "跡地には「池田屋騒動之址」の石碑があり、建物は残らない。1960年ごろまで当時の建物が残ったが取り壊され、現在は居酒屋になっている。位置はWikipedia座標とOSMが一致した。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「池田屋事件」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%B1%A0%E7%94%B0%E5%B1%8B%E4%BA%8B%E4%BB%B6"
+    }
+   ],
+   "pos_source": "wikipedia座標+Nominatim一致"
+  },
+  {
+   "id": "k021",
+   "name": "三条大橋",
+   "kind": "R",
+   "lat": 35.00905,
+   "lon": 135.77172,
+   "event_id": "ev_ikedaya",
+   "year": 1864.519,
+   "year_label": "1864年7月",
+   "year_conf": "定説",
+   "groups": [
+    "新選組"
+   ],
+   "why": "三条通が鴨川を渡る橋。擬宝珠に池田屋事件でついたとされる刀傷が残るといわれる。",
+   "check": "刀傷が池田屋事件のものかは「とされる」止まりで確定できない。現在の橋は昭和の架け替えで、擬宝珠は再利用されたもの。",
+   "rumor": "擬宝珠の刀傷は池田屋事件の名残という話があるが、確証はない。",
+   "conf": "伝承",
+   "sources": [
+    {
+     "label": "Wikipedia「三条大橋」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%B8%89%E6%9D%A1%E5%A4%A7%E6%A9%8B"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/571549175"
+    }
+   ],
+   "pos_source": "osm:way/571549175"
+  },
+  {
+   "id": "k022",
+   "name": "佐久間象山 遭難之碑",
+   "kind": "O",
+   "lat": 35.00903,
+   "lon": 135.77039,
+   "event_id": "ev_kinmon",
+   "year": 1864.613,
+   "year_label": "1864年7月",
+   "year_conf": "頃",
+   "groups": [
+    "志士(その他)"
+   ],
+   "why": "信濃出身の思想家・佐久間象山は、一橋慶喜に招かれて上洛した後、三条木屋町で刺客に討たれた。",
+   "check": "碑は象山と大村益次郎の連名。大村の遭難は1869年のため、この地図の年代(〜1868)の対象外。象山の月日はWikipediaでは「7月11日」としか確認できず、元治元年とみて年を採った。木屋町御池付近(OSM)にも同種の碑があり位置は2か所ある。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「佐久間象山」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BD%90%E4%B9%85%E9%96%93%E8%B1%A1%E5%B1%B1"
+    },
+    {
+     "label": "Wikipedia「大村益次郎」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E6%9D%91%E7%9B%8A%E6%AC%A1%E9%83%8E"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5965970999"
+    }
+   ],
+   "pos_source": "osm:node/5965970999"
+  },
+  {
+   "id": "k023",
+   "name": "蛤御門",
+   "kind": "R",
+   "lat": 35.02313,
+   "lon": 135.7596,
+   "event_id": "ev_kinmon",
+   "year": 1864.635,
+   "year_label": "1864年8月",
+   "year_conf": "定説",
+   "groups": [
+    "長州",
+    "会津"
+   ],
+   "why": "京都御所の西側の門。禁門の変では、この門の周辺がもっとも激しい戦場になった。門柱には弾痕が残る。",
+   "check": "「弾痕」は現在も確認できるとWikipedia「蛤御門」にある。どの戦闘の弾かまでは確認できない。",
+   "rumor": "門柱の弾痕は禁門の変のもの、と語られる。",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「蛤御門」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%9B%A4%E5%BE%A1%E9%96%80"
+    },
+    {
+     "label": "Wikipedia「禁門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E7%A6%81%E9%96%80%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/relation/7924612"
+    }
+   ],
+   "pos_source": "osm:relation/7924612"
+  },
+  {
+   "id": "k024",
+   "name": "中立売御門",
+   "kind": "R",
+   "lat": 35.02507,
+   "lon": 135.75957,
+   "event_id": "ev_kinmon",
+   "year": 1864.635,
+   "year_label": "1864年8月",
+   "year_conf": "定説",
+   "groups": [
+    "長州"
+   ],
+   "why": "禁門の変で、長州の福原隊と国司・来島隊は筑前藩が守るこの門を突破し、御所内に入った。",
+   "check": "突破後、乾門を守る薩摩藩兵が援軍に来て形勢が逆転した(Wikipedia「蛤御門の変」)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「蛤御門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%9B%A4%E5%BE%A1%E9%96%80%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "Wikipedia「京都御苑」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%BE%A1%E8%8B%91"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/relation/7924613"
+    }
+   ],
+   "pos_source": "osm:relation/7924613"
+  },
+  {
+   "id": "k025",
+   "name": "乾御門",
+   "kind": "R",
+   "lat": 35.02748,
+   "lon": 135.75959,
+   "event_id": "ev_kinmon",
+   "year": 1864.635,
+   "year_label": "1864年8月",
+   "year_conf": "定説",
+   "groups": [
+    "薩摩",
+    "長州"
+   ],
+   "why": "禁門の変で薩摩藩兵が守った門。中立売御門を破った長州勢が御所へ入ると、薩摩勢が駆けつけて形勢を覆した。",
+   "check": "守備の経緯はWikipedia「蛤御門の変」による。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「蛤御門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%9B%A4%E5%BE%A1%E9%96%80%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "Wikipedia「京都御苑」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%BE%A1%E8%8B%91"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/relation/7924614"
+    }
+   ],
+   "pos_source": "osm:relation/7924614"
+  },
+  {
+   "id": "k026",
+   "name": "京都御所",
+   "kind": "R",
+   "lat": 35.02526,
+   "lon": 135.76235,
+   "event_id": "ev_kinmon",
+   "year": 1864.635,
+   "year_label": "1864年8月",
+   "year_conf": "定説",
+   "groups": [
+    "公家・朝廷"
+   ],
+   "why": "禁門の変の戦場となった御所。いまの建物は1854年の火災のあと1855年に再建されたもので、安政度内裏と呼ばれる。",
+   "check": "禁門の変の経緯(長州勢の御所内侵入)は蛤御門の変、建物の来歴は京都御所の項で確認。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「京都御所」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%BE%A1%E6%89%80"
+    },
+    {
+     "label": "Wikipedia「蛤御門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%9B%A4%E5%BE%A1%E9%96%80%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/554879249"
+    }
+   ],
+   "pos_source": "osm:way/554879249"
+  },
+  {
+   "id": "k027",
+   "name": "鷹司邸跡(久坂玄瑞自刃の地とされる)",
+   "kind": "W",
+   "lat": 35.01855,
+   "lon": 135.76355,
+   "event_id": "ev_kinmon",
+   "year": 1864.635,
+   "year_label": "1864年8月",
+   "year_conf": "定説",
+   "groups": [
+    "長州"
+   ],
+   "why": "禁門の変で、久坂玄瑞や寺島忠三郎は朝廷への嘆願を求めて鷹司邸へ入り、燃える邸内で自害した。",
+   "check": "京都御苑内に邸跡を示す案内板がある(Wikipedia「京都御苑」)。正確な自刃の場所は出典で確認できず、位置は推定(白破線)。",
+   "rumor": "",
+   "conf": "異説",
+   "sources": [
+    {
+     "label": "Wikipedia「禁門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E7%A6%81%E9%96%80%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "Wikipedia「久坂玄瑞」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%B9%85%E5%9D%82%E7%8E%84%E7%91%9E"
+    },
+    {
+     "label": "Wikipedia「京都御苑」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E5%BE%A1%E8%8B%91"
+    }
+   ],
+   "pos_source": "Nominatim(OSM)"
+  },
+  {
+   "id": "k028",
+   "name": "長州藩邸跡",
+   "kind": "O",
+   "lat": 35.01122,
+   "lon": 135.76959,
+   "event_id": "ev_kinmon",
+   "year": 1864.635,
+   "year_label": "1864年8月",
+   "year_conf": "定説",
+   "groups": [
+    "長州"
+   ],
+   "why": "長州藩の京都藩邸は河原町にあった。禁門の変で敗れた長州勢は、逃げる際にこの屋敷に火を放ったとされる。",
+   "check": "藩邸の位置が「河原町」であること(Wikipedia「長州藩」)と、碑の位置(OSM)は整合する。敷地の範囲は出典で確認できない。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「長州藩」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E9%95%B7%E5%B7%9E%E8%97%A9"
+    },
+    {
+     "label": "Wikipedia「蛤御門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%9B%A4%E5%BE%A1%E9%96%80%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/4853385407"
+    }
+   ],
+   "pos_source": "osm:node/4853385407"
+  },
+  {
+   "id": "k029",
+   "name": "桂小五郎寓居跡(木戸孝允)",
+   "kind": "O",
+   "lat": 35.00965,
+   "lon": 135.7704,
+   "event_id": "ev_kinmon",
+   "year": 1864.635,
+   "year_label": "1864年頃",
+   "year_conf": "頃",
+   "groups": [
+    "長州"
+   ],
+   "why": "禁門の変のあと、桂小五郎(のちの木戸孝允)は幾松らの助けを借りて京都で潜伏した。",
+   "check": "「桂小五郎・幾松寓居跡」とされる料亭の跡について、Wikipediaは「この時期に二人が住んでいた記録は確認されていない」と明記している。碑の場所は伝承の域を出ない。",
+   "rumor": "",
+   "conf": "異説",
+   "sources": [
+    {
+     "label": "Wikipedia「木戸孝允」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%9C%A8%E6%88%B8%E5%AD%9D%E5%85%81"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5965971002"
+    }
+   ],
+   "pos_source": "osm:node/5965971002"
+  },
+  {
+   "id": "k030",
+   "name": "六角獄舎跡(平野国臣ら殉難の地)",
+   "kind": "O",
+   "lat": 35.00739,
+   "lon": 135.74676,
+   "event_id": "ev_kinmon",
+   "year": 1864.635,
+   "year_label": "1864年8月",
+   "year_conf": "定説",
+   "groups": [
+    "志士(その他)"
+   ],
+   "why": "禁門の変の火災が獄舎に及ぶおそれがあるなか、囚人33人が斬罪にされ、生野の変の平野国臣らも命を落とした。",
+   "check": "碑の位置(OSM)と六角獄舎の所在の対応は、出典に所在地の記述がなく未確認。位置は参考程度に。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「六角獄舎」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%85%AD%E8%A7%92%E7%8D%84%E8%88%8E"
+    },
+    {
+     "label": "Wikipedia「平野国臣」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%B9%B3%E9%87%8E%E5%9B%BD%E8%87%A3"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6139857456"
+    }
+   ],
+   "pos_source": "osm:node/6139857456"
+  },
+  {
+   "id": "k031",
+   "name": "禁門の変 長州藩殉難者墓所(大光明寺)",
+   "kind": "O",
+   "lat": 35.03299,
+   "lon": 135.76081,
+   "event_id": "ev_kinmon",
+   "year": 1864.635,
+   "year_label": "1864年8月",
+   "year_conf": "定説",
+   "groups": [
+    "長州"
+   ],
+   "why": "薩摩藩と戦って死んだ長州勢20人の遺体は、薩摩藩によって相国寺の塔頭・大光明寺に葬られ、1906年に毛利家が墓石を建てた。",
+   "check": "墓所の位置は相国寺の敷地内(OSM)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「禁門の変」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E7%A6%81%E9%96%80%E3%81%AE%E5%A4%89"
+    },
+    {
+     "label": "Wikipedia「相国寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E7%9B%B8%E5%9B%BD%E5%AF%BA"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6798337683"
+    }
+   ],
+   "pos_source": "osm:node/6798337683"
+  },
+  {
+   "id": "k032",
+   "name": "西本願寺・太鼓楼(新選組屯所)",
+   "kind": "R",
+   "lat": 34.99277,
+   "lon": 135.7526,
+   "event_id": "ev_satcho",
+   "year": 1865.167,
+   "year_label": "1865年3月",
+   "year_conf": "定説",
+   "groups": [
+    "新選組"
+   ],
+   "why": "1865年3月、新選組は西本願寺の北集会所と太鼓楼を屯所とし、1867年6月までここを本拠にした。境内で大砲や小銃の訓練をして、寺が苦情を寄せた。",
+   "check": "北集会所は現存せず、太鼓楼が残る。「太鼓楼の当時の姿」の細部は出典で確認できなかった。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「西本願寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%A5%BF%E6%9C%AC%E9%A1%98%E5%AF%BA"
+    },
+    {
+     "label": "Wikipedia「新選組」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%96%B0%E9%81%B8%E7%B5%84"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/99182469"
+    }
+   ],
+   "pos_source": "osm:way/99182469"
+  },
+  {
+   "id": "k033",
+   "name": "不動堂村屯所跡(推定)",
+   "kind": "W",
+   "lat": 34.98695,
+   "lon": 135.75518,
+   "event_id": "ev_shinsengumi_move",
+   "year": 1867.455,
+   "year_label": "1867年6月",
+   "year_conf": "定説",
+   "groups": [
+    "新選組"
+   ],
+   "why": "新選組は1867年6月15日、西本願寺から不動堂村へ屯所を移した。",
+   "check": "移転日は新選組の年表による。碑の位置(OSM)と屯所の正確な敷地は出典で確認できず、位置は推定(白破線)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「新選組」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%96%B0%E9%81%B8%E7%B5%84"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/6680892689"
+    }
+   ],
+   "pos_source": "osm:node/6680892689"
+  },
+  {
+   "id": "k034",
+   "name": "薩摩藩邸跡(二本松)",
+   "kind": "O",
+   "lat": 35.03006,
+   "lon": 135.7595,
+   "event_id": "ev_satcho",
+   "year": 1866.183,
+   "year_label": "1866年1月",
+   "year_conf": "定説",
+   "groups": [
+    "薩摩"
+   ],
+   "why": "京都の薩摩藩邸「二本松屋敷」は現在の同志社大学の場所にあたる。坂本龍馬はここで薩摩と長州を和解させ、近衛家別邸で同盟を結ばせたとされる。",
+   "check": "場所の対応は、中岡慎太郎の項の記述(二本松薩摩藩邸=現在地・同志社大学)による。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「中岡慎太郎」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%B8%AD%E5%B2%A1%E6%85%8E%E5%A4%AA%E9%83%8E"
+    },
+    {
+     "label": "Wikipedia「薩長同盟」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%96%A9%E9%95%B7%E5%90%8C%E7%9B%9F"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/13253300528"
+    }
+   ],
+   "pos_source": "osm:node/13253300528"
+  },
+  {
+   "id": "k035",
+   "name": "薩長同盟 締結の地(位置に疑義)",
+   "kind": "W",
+   "lat": 35.03773,
+   "lon": 135.75834,
+   "event_id": "ev_satcho",
+   "year": 1866.183,
+   "year_label": "1866年3月",
+   "year_conf": "定説",
+   "groups": [
+    "薩摩",
+    "長州",
+    "坂本龍馬"
+   ],
+   "why": "薩長同盟は1866年3月7日(慶応2年1月21日)、近衛家別邸の御花畑屋敷(小松帯刀邸)で結ばれた。",
+   "check": "Wikipedia「中岡慎太郎」は場所を「堀川通一条東の近衛家別邸」としているが、碑の点(OSM)はそこより約900m北にあり食い違う。どちらが正しいかは確認できておらず、位置は推定(白破線)。",
+   "rumor": "",
+   "conf": "異説",
+   "sources": [
+    {
+     "label": "Wikipedia「薩長同盟」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%96%A9%E9%95%B7%E5%90%8C%E7%9B%9F"
+    },
+    {
+     "label": "Wikipedia「中岡慎太郎」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%B8%AD%E5%B2%A1%E6%85%8E%E5%A4%AA%E9%83%8E"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5323187220"
+    }
+   ],
+   "pos_source": "osm:node/5323187220"
+  },
+  {
+   "id": "k036",
+   "name": "二条城(大政奉還の上表)",
+   "kind": "R",
+   "lat": 35.01396,
+   "lon": 135.74851,
+   "event_id": "ev_taisei",
+   "year": 1867.855,
+   "year_label": "1867年11月",
+   "year_conf": "定説",
+   "groups": [
+    "幕府・彦根"
+   ],
+   "why": "1867年10月13日、徳川慶喜は二の丸大広間に40藩の重臣約50人を集めて大政奉還を諮った。翌14日に上表を朝廷へ提出した。",
+   "check": "日付と場所はWikipedia「大政奉還」による。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「大政奉還」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%A4%A7%E6%94%BF%E5%A5%89%E9%82%84"
+    },
+    {
+     "label": "Wikipedia「二条城」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%8C%E6%9D%A1%E5%9F%8E"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/57111281"
+    }
+   ],
+   "pos_source": "osm:way/57111281"
+  },
+  {
+   "id": "k037",
+   "name": "土佐藩邸跡",
+   "kind": "O",
+   "lat": 35.0062,
+   "lon": 135.77051,
+   "event_id": "ev_taisei",
+   "year": 1867.755,
+   "year_label": "1867年10月",
+   "year_conf": "定説",
+   "groups": [
+    "土佐"
+   ],
+   "why": "土佐藩は後藤象二郎らの働きで大政奉還の建白書を出した。京都藩邸は河原町にあった。",
+   "check": "Wikipedia「土佐藩」は藩邸を「四条通河原町」とするが、碑の点(OSM)は三条寄りで、表記の食い違いがある。位置は目安。建白書の提出は10月3日(後藤象二郎)。",
+   "rumor": "",
+   "conf": "異説",
+   "sources": [
+    {
+     "label": "Wikipedia「土佐藩」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%9C%9F%E4%BD%90%E8%97%A9"
+    },
+    {
+     "label": "Wikipedia「後藤象二郎」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%BE%8C%E8%97%A4%E8%B1%A1%E4%BA%8C%E9%83%8E"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/2548425938"
+    }
+   ],
+   "pos_source": "osm:node/2548425938"
+  },
+  {
+   "id": "k038",
+   "name": "孝明天皇 後月輪東山陵(泉涌寺内)",
+   "kind": "O",
+   "lat": 34.97784,
+   "lon": 135.78222,
+   "event_id": "ev_komei_death",
+   "year": 1867.079,
+   "year_label": "1867年1月",
+   "year_conf": "定説",
+   "groups": [
+    "公家・朝廷"
+   ],
+   "why": "孝明天皇は1867年1月30日に崩御。陵は古式の円墳を模して泉涌寺の裏山に築かれた。",
+   "check": "陵の所在は宮内庁治定として泉涌寺内(Wikipedia「孝明天皇」)。碑の点はOSM。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「孝明天皇」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%AD%9D%E6%98%8E%E5%A4%A9%E7%9A%87"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/10657012295"
+    }
+   ],
+   "pos_source": "osm:node/10657012295"
+  },
+  {
+   "id": "k039",
+   "name": "近江屋跡(坂本龍馬・中岡慎太郎遭難之地)",
+   "kind": "O",
+   "lat": 35.00558,
+   "lon": 135.7691,
+   "event_id": "ev_omiya",
+   "year": 1867.941,
+   "year_label": "1867年12月",
+   "year_conf": "定説",
+   "groups": [
+    "坂本龍馬",
+    "土佐"
+   ],
+   "why": "1867年12月10日(11月15日)、坂本龍馬と中岡慎太郎、従僕の山田藤吉が、河原町通蛸薬師下ルの近江屋で襲われた。",
+   "check": "碑の立つ場所は当時の近江屋の建物の内部にあたる(Wikipedia)。実行犯は見廻組説が通説とされるが異説もある。",
+   "rumor": "黒幕については「某諸侯の命」を示す証言など諸説あるが、確定していない。",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「近江屋事件」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E6%B1%9F%E5%B1%8B%E4%BA%8B%E4%BB%B6"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5154425656"
+    }
+   ],
+   "pos_source": "osm:node/5154425656"
+  },
+  {
+   "id": "k040",
+   "name": "酢屋(海援隊京都本部)",
+   "kind": "R",
+   "lat": 35.00849,
+   "lon": 135.76995,
+   "event_id": "ev_omiya",
+   "year": 1867.75,
+   "year_label": "1867年10月頃",
+   "year_conf": "定説",
+   "groups": [
+    "坂本龍馬",
+    "土佐"
+   ],
+   "why": "龍馬は材木商・酢屋の2階に海援隊の京都本部を置き、自身も表通りに面した部屋を使った。近江屋へ移ったのは1867年10月ごろ。",
+   "check": "1階は店舗、2階は龍馬関連のギャラリーとして一般に公開されている(Wikipedia「酢屋」)。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「酢屋」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E9%85%A2%E5%B1%8B"
+    },
+    {
+     "label": "Wikipedia「近江屋事件」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E6%B1%9F%E5%B1%8B%E4%BA%8B%E4%BB%B6"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/581621299"
+    }
+   ],
+   "pos_source": "osm:way/581621299"
+  },
+  {
+   "id": "k041",
+   "name": "京都霊山護國神社(龍馬・慎太郎の墓)",
+   "kind": "R",
+   "lat": 34.9995,
+   "lon": 135.78321,
+   "event_id": "ev_omiya",
+   "year": 1867.941,
+   "year_label": "1867年12月",
+   "year_conf": "定説",
+   "groups": [
+    "坂本龍馬",
+    "志士(その他)"
+   ],
+   "why": "坂本龍馬、中岡慎太郎、木戸孝允ら幕末の志士が祀られ、境内の東側は志士の霊山墓地になっている。11月15日には龍馬祭が行われる。",
+   "check": "祭神と龍馬祭はWikipedia「京都霊山護國神社」。龍馬の葬儀は南隣の霊明神社で行われた。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「京都霊山護國神社」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E9%9C%8A%E5%B1%B1%E8%AD%B7%E5%9C%8B%E7%A5%9E%E7%A4%BE"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/522894733"
+    }
+   ],
+   "pos_source": "osm:way/522894733"
+  },
+  {
+   "id": "k042",
+   "name": "霊山歴史館(幕末維新ミュージアム)",
+   "kind": "R",
+   "lat": 34.99925,
+   "lon": 135.7828,
+   "event_id": "ev_omiya",
+   "year": 1867.944,
+   "year_label": "1867年",
+   "year_conf": "頃",
+   "groups": [
+    "新選組",
+    "坂本龍馬"
+   ],
+   "why": "幕末・明治維新を専門とする博物館。龍馬や土方歳三、近藤勇が愛用した刀、池田屋事件や寺田屋事件の模型などを展示している。",
+   "check": "展示内容はWikipedia「霊山歴史館」による。展示は入れ替わることがあるため現地で確認してほしい。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「霊山歴史館」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E9%9C%8A%E5%B1%B1%E6%AD%B4%E5%8F%B2%E9%A4%A8"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/5273095700"
+    }
+   ],
+   "pos_source": "osm:node/5273095700"
+  },
+  {
+   "id": "k043",
+   "name": "月真院(御陵衛士屯所)",
+   "kind": "R",
+   "lat": 35.00107,
+   "lon": 135.78008,
+   "event_id": "ev_abura",
+   "year": 1867.417,
+   "year_label": "1867年6月",
+   "year_conf": "定説",
+   "groups": [
+    "新選組"
+   ],
+   "why": "新選組を離れた伊東甲子太郎らは、1867年6月に高台寺の塔頭・月真院に屯所を構え、孝明天皇陵を守る「禁裏御陵衛士」を名乗った。",
+   "check": "屯所の出来事は高台寺と御陵衛士の項で確認。碑(OSM)は月真院のすぐ近くにある。",
+   "rumor": "",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「高台寺」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E9%AB%98%E5%8F%B0%E5%AF%BA"
+    },
+    {
+     "label": "Wikipedia「御陵衛士」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E5%BE%A1%E9%99%B5%E8%A1%9B%E5%A3%AB"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/way/522959941"
+    }
+   ],
+   "pos_source": "osm:way/522959941"
+  },
+  {
+   "id": "k044",
+   "name": "伊東甲子太郎殉難之跡(油小路)",
+   "kind": "O",
+   "lat": 34.9881,
+   "lon": 135.75389,
+   "event_id": "ev_abura",
+   "year": 1867.95,
+   "year_label": "1867年12月",
+   "year_conf": "定説",
+   "groups": [
+    "新選組"
+   ],
+   "why": "伊東は近藤勇に酒席へ招かれた帰りに、本光寺の前で新選組隊士に襲われて絶命した。遺体は油小路七条の辻に置かれ、引き取りに来た藤堂平助らも殺害された。",
+   "check": "伊東を襲った場所が「本光寺前」であることはWikipedia「伊東甲子太郎」「油小路事件」で確認。碑の位置はOSM。",
+   "rumor": "伊東が近藤の暗殺を企てていたとの話は、当時の書簡では確認できないとWikipediaも注記している。",
+   "conf": "定説",
+   "sources": [
+    {
+     "label": "Wikipedia「油小路事件」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E6%B2%B9%E5%B0%8F%E8%B7%AF%E4%BA%8B%E4%BB%B6"
+    },
+    {
+     "label": "Wikipedia「伊東甲子太郎」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E4%BC%8A%E6%9D%B1%E7%94%B2%E5%AD%90%E5%A4%AA%E9%83%8E"
+    },
+    {
+     "label": "位置: OpenStreetMap",
+     "url": "https://www.openstreetmap.org/node/7200564759"
+    }
+   ],
+   "pos_source": "osm:node/7200564759"
+  },
+  {
+   "id": "k045",
+   "name": "近藤勇の首がさらされた三条河原(推定)",
+   "kind": "W",
+   "lat": 35.0092,
+   "lon": 135.771,
+   "event_id": "ev_after_toba",
+   "year": 1868.377,
+   "year_label": "1868年5月",
+   "year_conf": "定説",
+   "groups": [
+    "新選組"
+   ],
+   "why": "近藤勇は1868年5月17日に板橋で斬首され、首は京都の三条河原にさらされた。その後の行方は確定していない。",
+   "check": "さらされた正確な場所は出典にないため、三条大橋付近に推定で置いた(白破線)。",
+   "rumor": "",
+   "conf": "異説",
+   "sources": [
+    {
+     "label": "Wikipedia「近藤勇」(CC BY-SA)",
+     "url": "https://ja.wikipedia.org/wiki/%E8%BF%91%E8%97%A4%E5%8B%87"
+    }
+   ],
+   "pos_source": "三条大橋付近(推定)"
+  }
+ ]
+}

@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>京都・幕末史跡マップ</title>
+<meta name="description" content="幕末(1853〜1868)の京都・洛中の史跡を現代地図に重ね、時代順にたどれる地図。ピンをタップすると由緒・検証・噂・出典を確認できます。">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+:root{
+  --bg:#faf8f4; --ink:#26221d; --sub:#6b645a; --line:#d9d3c7; --card:#fffdf9;
+  --red:#e0342c; --orange:#f08a24; --accent:#8c1d18; --note:#f1eee7;
+  --shadow:0 4px 18px rgba(30,20,10,.22);
+  --font:"Yu Gothic UI","Hiragino Sans","Noto Sans JP","Meiryo",system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:var(--font);-webkit-text-size-adjust:100%}
+body{overflow:hidden}
+#map{position:absolute;inset:0;background:#e9e6df}
+button{font:inherit;color:inherit;cursor:pointer}
+.ui{position:absolute;z-index:500}
+/* --- 上部 --- */
+#topbar{top:max(8px,env(safe-area-inset-top));left:8px;right:8px;display:flex;gap:8px;align-items:center;pointer-events:none}
+#title{pointer-events:auto;background:var(--card);border-radius:12px;padding:7px 12px;box-shadow:var(--shadow);font-weight:700;font-size:15px;line-height:1.2;flex:1;min-width:0}
+#title small{display:block;font-weight:400;color:var(--sub);font-size:11px;margin-top:2px}
+.btn{pointer-events:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);min-height:44px;min-width:44px;padding:0 12px;font-size:14px;font-weight:600}
+.btn[aria-pressed="true"]{background:#2b2620;color:#fff;border-color:#2b2620}
+#filters{top:calc(max(8px,env(safe-area-inset-top)) + 56px);left:8px;right:8px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
+.chip{pointer-events:auto;display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:0 12px;min-height:36px;font-size:13px;box-shadow:0 2px 8px rgba(30,20,10,.15)}
+.chip[aria-pressed="false"]{opacity:.45}
+.chip i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.chip i.R{background:var(--red)} .chip i.O{background:var(--orange)} .chip i.W{background:#fff;border:2px dashed #444}
+select.chip{appearance:auto;padding-right:6px}
+#legend{top:calc(max(8px,env(safe-area-inset-top)) + 104px);left:8px;background:var(--card);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);font-size:12.5px;line-height:1.7;max-width:270px}
+#legend[hidden]{display:none}
+#legend div{display:flex;gap:8px;align-items:center}
+#legend i{flex:none;width:12px;height:12px;border-radius:50%}
+#legend i.R{background:var(--red)} #legend i.O{background:var(--orange)} #legend i.Y{background:#f2c92b;opacity:.5} #legend i.W{background:#fff;border:2px dashed #444}
+#legend p{margin:6px 0 0;color:var(--sub);font-size:11.5px;line-height:1.6}
+#legend p a{color:#2c5a96}
+/* --- カード --- */
+#card{left:8px;right:8px;bottom:calc(104px + env(safe-area-inset-bottom));pointer-events:none}
+#card .c{pointer-events:auto;background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:11px 14px 12px;border-left:7px solid var(--accent);max-width:560px;max-height:30dvh;overflow:auto}
+#card .c.note{background:var(--note);border:2px dotted #8d867a;border-left:2px dotted #8d867a;box-shadow:none;color:#4d483f}
+#card .lab{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;border-radius:5px;padding:1px 7px;margin-right:6px;vertical-align:1px;background:var(--accent);color:#fff}
+#card .c.note .lab{background:transparent;color:#5c574f;border:1px solid #8d867a}
+#card .out{display:inline-block;font-size:11px;border:1px solid #8d867a;border-radius:5px;padding:0 6px;margin-left:4px;color:#5c574f}
+#card h3{margin:2px 0 3px;font-size:16px;line-height:1.35}
+#card .meta{font-size:12px;color:var(--sub);margin-bottom:3px}
+#card p{margin:0;font-size:13.5px;line-height:1.65}
+#card .srcs{margin-top:5px;font-size:11.5px}
+#card .srcs a{color:#2c5a96;margin-right:8px}
+/* --- 下部コントロール --- */
+#controls{left:8px;right:8px;bottom:max(8px,env(safe-area-inset-bottom));background:var(--card);border-radius:14px;box-shadow:var(--shadow);padding:8px 10px 5px;display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}
+#credit{flex-basis:100%;font-size:9.5px;color:#7a7368;line-height:1.3;text-align:center}
+#credit a{color:#5a6f8f}
+body.video #credit{display:none}
+#play{width:48px;height:48px;border-radius:50%;border:none;background:#2b2620;color:#fff;font-size:18px;flex:none}
+#sl{flex:1;position:relative;min-width:0}
+#ticks{position:absolute;left:10px;right:10px;top:-2px;height:14px;pointer-events:none}
+#ticks b{position:absolute;top:0;width:10px;height:10px;margin-left:-5px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 0 0 1px var(--accent);pointer-events:auto;cursor:pointer}
+#ticks b.n{background:#fff;box-shadow:0 0 0 1.5px #8d867a;border-style:dotted;border-color:#8d867a}
+#slider{width:100%;margin:14px 0 0;accent-color:#2b2620;height:28px}
+#ylabel{flex:none;min-width:92px;text-align:right;font-weight:800;font-size:17px;line-height:1.15}
+#ylabel small{display:block;font-weight:500;font-size:11px;color:var(--sub)}
+#note-attr{position:absolute;right:6px;bottom:2px;z-index:400;font-size:10px;color:#555;background:rgba(255,255,255,.7);padding:0 4px;border-radius:3px}
+.leaflet-control-attribution{font-size:10px}
+.leaflet-bottom.leaflet-right{margin-bottom:96px}
+/* --- 詳細シート --- */
+#sheet{left:0;right:0;bottom:0;z-index:700;background:var(--card);border-radius:18px 18px 0 0;box-shadow:0 -6px 28px rgba(30,20,10,.3);max-height:68dvh;overflow:auto;padding:14px 16px calc(18px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .25s ease;visibility:hidden}
+#sheet.open{transform:none;visibility:visible}
+#sheet .x{position:sticky;top:0;float:right;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:#fff;font-size:20px;line-height:1}
+#sheet h2{margin:0 44px 6px 0;font-size:19px;line-height:1.35}
+#sheet .badges{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;border-radius:999px;border:1px solid var(--line);padding:2px 10px;background:#fff}
+.badge i{width:10px;height:10px;border-radius:50%;display:inline-block}
+.badge i.R{background:var(--red)} .badge i.O{background:var(--orange)} .badge i.W{background:#fff;border:2px dashed #444}
+.badge.conf-定説{border-color:#2f7d4f;color:#1e5a37}
+.badge.conf-異説{border-color:#b26a00;color:#7a4700}
+.badge.conf-伝承{border-color:#7a4a9a;color:#5a3275}
+#sheet h4{margin:14px 0 4px;font-size:13px;letter-spacing:.05em;color:var(--sub)}
+#sheet p{margin:0;font-size:14.5px;line-height:1.75}
+#sheet .rumor{background:#f4eefb;border:1px dashed #9b78bd;border-radius:10px;padding:8px 10px;margin-top:14px}
+#sheet .rumor h4{margin:0 0 3px;color:#5a3275}
+#sheet ul{margin:0;padding-left:1.1em;font-size:13.5px;line-height:1.8}
+#sheet a{color:#2c5a96;word-break:break-all}
+#sheet .foot{margin-top:12px;font-size:11.5px;color:var(--sub);line-height:1.6}
+@media (min-width:900px){
+  #sheet{left:auto;right:12px;bottom:12px;top:12px;width:400px;max-height:none;border-radius:16px;transform:translateX(110%)}
+  #sheet.open{transform:none}
+  #card{left:12px;right:auto;width:520px}
+  #controls{left:12px;right:auto;width:min(720px,calc(100% - 440px))}
+  #topbar{left:12px;right:auto;width:420px}
+  #filters{left:12px;right:auto;width:600px}
+  #legend{left:12px}
+}
+/* --- ピン --- */
+.pinw{background:none;border:none}
+.leaflet-tile-pane{filter:saturate(.6) contrast(.92) brightness(1.05)}
+.pin{position:relative;width:28px;height:36px;transform-origin:50% 100%;transform:scale(calc(var(--ps,1)*var(--hs,1)));transition:opacity .25s,transform .25s}
+.pin svg{position:absolute;inset:0;filter:drop-shadow(0 2px 2px rgba(0,0,0,.35))}
+.pin .glow{position:absolute;left:50%;top:13px;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;pointer-events:none;
+  box-shadow:0 0 0 calc(6px + 16px*var(--g,0)) rgba(255,196,30,calc(.5*var(--on,0))),0 0 0 calc(14px + 22px*var(--g,0)) rgba(255,196,30,calc(.22*var(--on,0))),0 0 26px 12px rgba(255,170,0,calc(.55*var(--on,0)));background:rgba(255,230,120,calc(.7*var(--on,0)))}
+.pin.hidden{display:none}
+.pin.dim{opacity:.42}
+.pin.R path.b{fill:var(--red)} .pin.O path.b{fill:var(--orange)}
+.pin.W path.b{fill:#fff;stroke:#333;stroke-width:2;stroke-dasharray:3.2 2.4}
+.pin.R path.b,.pin.O path.b{stroke:#fff;stroke-width:1.5}
+.pin circle.d{fill:#fff;opacity:.92}
+.pin.W circle.d{fill:#333;opacity:.85}
+/* --- 動画モード --- */
+body.video{width:1920px;height:1080px;font-size:16px}
+body.video .ui:not(.vshow){display:none!important}
+body.video #title,body.video #legend,body.video #card,body.video #ylabel{display:block!important}
+body.video #topbar{display:block!important;top:36px;left:44px;right:auto;width:auto}
+body.video #title{background:rgba(255,253,249,.94);padding:14px 26px;font-size:40px;border-radius:16px}
+body.video #title small{font-size:22px;margin-top:6px}
+body.video #legend{top:36px;left:auto;right:44px;display:block!important;font-size:24px;padding:16px 22px;max-width:none;line-height:1.75}
+body.video #legend i{width:20px;height:20px}
+body.video #legend p{display:none}
+body.video #legend .no-v{display:none}
+body.video #card{left:44px;right:auto;bottom:48px;width:880px}
+body.video #card .c{max-width:none;max-height:none;padding:22px 28px 24px;border-left-width:12px;border-radius:18px;overflow:visible}
+body.video #card .lab{font-size:22px;padding:2px 12px;border-radius:8px}
+body.video #card .out{font-size:22px;padding:1px 12px}
+body.video #card h3{font-size:46px;margin:8px 0 6px}
+body.video #card .meta{font-size:26px;margin-bottom:6px}
+body.video #card p{font-size:32px;line-height:1.55}
+body.video #card .srcs{display:none}
+body.video #card .c.note p.full{display:none}
+body.video #card .c:not(.note) p.short{display:none}
+body.video #card .c.note{background:rgba(241,238,231,.96);border:4px dashed #8d867a;border-left-width:4px}
+body.video #card .c.note h3{font-size:40px}
+body.video #ylabel{position:absolute;right:48px;bottom:36px;font-size:104px;text-align:right;color:#2b2620;text-shadow:0 0 14px #fff,0 0 6px #fff,0 0 2px #fff;z-index:500;min-width:0}
+body.video #ylabel small{font-size:30px;color:#3a352e;font-weight:700}
+body.video #note-attr{display:none}
+body.video .btn,body.video #play,body.video #sl{display:none!important}
+body.video #controls{position:static;display:block;background:none;box-shadow:none;padding:0;border-radius:0}
+body.video .leaflet-control-container{display:none}
+#card .short{display:none}
+body.video #card .short{display:block}
+body.video .pin{width:42px;height:54px}
+body.video .pin .glow{top:19px;width:21px;height:21px;margin:-10px 0 0 -10px}
+body.video .pin.dim{opacity:.66}
+#toast{position:absolute;z-index:900;left:50%;top:70px;transform:translateX(-50%);background:#2b2620;color:#fff;border-radius:10px;padding:8px 14px;font-size:13px;display:none;max-width:86%}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div id="topbar" class="ui vshow">
+  <div id="title">京都・幕末史跡マップ<small id="sub">洛中の史跡を時代順に(1853〜1868)</small></div>
+  <button class="btn" id="btn-legend" aria-pressed="false" aria-label="凡例">凡例</button>
+  <button class="btn" id="btn-loc" aria-label="現在地を表示">現在地</button>
+</div>
+<div id="filters" class="ui">
+  <button class="chip" data-kind="R" aria-pressed="true"><i class="R"></i>現存</button>
+  <button class="chip" data-kind="O" aria-pressed="true"><i class="O"></i>石碑</button>
+  <button class="chip" data-kind="W" aria-pressed="true"><i class="W"></i>跡地(推定)</button>
+  <select class="chip" id="grp" aria-label="人物・勢力で絞り込み"><option value="">人物・勢力: すべて</option></select>
+</div>
+<div id="legend" class="ui vshow" hidden>
+  <div><i class="R"></i>赤: 現存する建物(寺社・町家など)</div>
+  <div><i class="O"></i>橙: 石碑・石標のみ(建物なし)</div>
+  <div class="no-v"><i class="Y"></i>黄: 看板・駒札のみ(今回は対象外)</div>
+  <div><i class="W"></i>白破線: 跡地で位置が推定</div>
+  <p>淡い色は、すでに出てきた史跡です。「噂・伝承」は史実と分けて表示します。<br>下のスライダーを動かすか▶で、時代順にたどれます。<br><a href="kyoto_bakumatsu_32s.mp4" target="_blank" rel="noopener">32秒の動画を見る</a></p>
+</div>
+<div id="card" class="ui vshow"></div>
+<div id="controls" class="ui vshow">
+  <button id="play" aria-label="再生">▶</button>
+  <div id="sl"><div id="ticks"></div><input id="slider" type="range" min="0" max="191" step="1" value="191" aria-label="年代スライダー"></div>
+  <div id="ylabel" class="vshow">1868年12月</div>
+  <div id="credit">地図: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院 淡色地図</a> ／ 史実: Wikipedia(CC BY-SA) ／ 位置: OpenStreetMap contributors ／ <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a></div>
+</div>
+<aside id="sheet" class="ui" aria-live="polite"></aside>
+<div id="toast"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+"use strict";
+const Q=new URLSearchParams(location.search);
+const VIDEO=Q.has('video');
+if(VIDEO)document.body.classList.add('video');
+const KIND={R:"現存する建物",O:"石碑・石標",W:"跡地(位置は推定)"};
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
+const ease=u=>{u=clamp(u,0,1);return u*u*(3-2*u)};
+let D,map,pins=[],steps=[],evSteps=[],OUT0=0,TOTAL=0,INTRO=0.8;
+const DUR={event:1.9,note:1.4},OUTRO=2.4;
+const state={kinds:new Set(['R','O','W']),group:'',idx:191,playing:false,sel:null,tau:0,mode:'slider'};
+const WIDE={c:[35.0078,135.7625],z:14.2};
+
+fetch('data.json').then(r=>r.json()).then(init).catch(e=>{document.body.insertAdjacentHTML('beforeend','<p style="padding:20px">データを読み込めませんでした。</p>');console.error(e)});
+
+function pinHTML(k){
+  return `<div class="pin ${k}"><span class="glow"></span><svg viewBox="0 0 28 36" width="100%" height="100%"><path class="b" d="M14 34 C14 34 3 21 3 13.5 A11 11 0 0 1 25 13.5 C25 21 14 34 14 34Z"/><circle class="d" cx="14" cy="13.5" r="4.2"/></svg></div>`;
+}
+function init(d){
+  D=d;
+  map=L.map('map',{zoomControl:false,zoomSnap:VIDEO?0:0.5,zoomDelta:0.5,attributionControl:false,
+     dragging:!VIDEO,scrollWheelZoom:!VIDEO,touchZoom:!VIDEO,doubleClickZoom:!VIDEO,boxZoom:false,keyboard:!VIDEO,
+     fadeAnimation:false,zoomAnimation:!VIDEO,markerZoomAnimation:!VIDEO,maxZoom:18,minZoom:12})
+     .setView(WIDE.c,VIDEO?WIDE.z:14.5);
+  const gsi=L.tileLayer('https://maps.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',{maxNativeZoom:18,maxZoom:18,attribution:'<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院 淡色地図</a>'});
+  gsi.addTo(map);window.__gsi=gsi;
+  if(!VIDEO&&!matchMedia('(pointer:coarse)').matches)L.control.zoom({position:'bottomright'}).addTo(map);
+  // ---- 事件・補足のステップ ----
+  D.events.forEach(e=>steps.push({kind:'event',id:e.id,start:e.t,e}));
+  D.notes.forEach(n=>steps.push({kind:'note',id:n.id,start:n.t0,n}));
+  steps.sort((a,b)=>a.start-b.start);
+  let tau=INTRO;
+  steps.forEach(s=>{s.tau0=tau;s.dur=DUR[s.kind];tau+=s.dur;s.tau1=tau;});
+  OUT0=tau;TOTAL=tau+OUTRO;
+  evSteps=steps.filter(s=>s.kind==='event');
+  // ---- ピン ----
+  D.pins.forEach(p=>{
+    const own=evSteps.find(s=>s.id===p.event_id);
+    if(own&&own.start>=p.year-0.001){p.revStep=own;p.hotFlag=true}
+    else{p.revStep=evSteps.find(s=>s.start>=p.year-0.001)||null;p.hotFlag=false}
+    p.m=L.marker([p.lat,p.lon],{icon:L.divIcon({className:'pinw',html:pinHTML(p.kind),iconSize:[VIDEO?42:28,VIDEO?54:36],iconAnchor:[VIDEO?21:14,VIDEO?52:34]}),keyboard:!VIDEO,title:p.name,riseOnHover:true}).addTo(map);
+    p.el=()=>p.m.getElement()&&p.m.getElement().firstChild;
+    if(!VIDEO)p.m.on('click',()=>openSheet(p));
+    pins.push(p);
+  });
+  steps.forEach(s=>{const lst=pins.filter(p=>p.revStep===s);lst.sort((a,b)=>b.lat-a.lat);lst.forEach((p,i)=>p.revTau=s.tau0+0.1+i*Math.min(0.1,1.0/Math.max(1,lst.length)));s.pins=lst;});
+  const outl=pins.filter(p=>!p.revStep);outl.forEach((p,i)=>p.revTau=OUT0+0.15+i*0.1);
+  const ps=()=>{const z=map.getZoom();map.getContainer().style.setProperty('--ps',VIDEO?1:(z<14?.62:z<15?.78:z<15.5?.9:1))};
+  map.on('zoomend',ps);
+  if(!VIDEO){map.fitBounds(L.latLngBounds(pins.map(p=>[p.lat,p.lon])),{paddingTopLeft:[16,150],paddingBottomRight:[16,150],maxZoom:15});}
+  ps();
+  // ---- UI ----
+  const groups=[...new Set(pins.flatMap(p=>p.groups))].sort((a,b)=>a.localeCompare(b,'ja'));
+  groups.forEach(g=>$('#grp').insertAdjacentHTML('beforeend',`<option>${esc(g)}</option>`));
+  buildTicks();
+  document.querySelectorAll('.chip[data-kind]').forEach(b=>b.onclick=()=>{
+    const k=b.dataset.kind;state.kinds.has(k)?state.kinds.delete(k):state.kinds.add(k);b.setAttribute('aria-pressed',state.kinds.has(k));refresh()});
+  $('#grp').onchange=e=>{state.group=e.target.value;refresh()};
+  $('#slider').oninput=e=>{stopPlay();state.idx=+e.target.value;state.mode='slider';refresh()};
+  $('#play').onclick=()=>state.playing?stopPlay():startPlay();
+  $('#btn-legend').onclick=e=>{const l=$('#legend');l.hidden=!l.hidden;e.currentTarget.setAttribute('aria-pressed',!l.hidden)};
+  $('#btn-loc').onclick=locate;
+  map.on('click',()=>closeSheet());
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
+  if(VIDEO){
+    $('#legend').hidden=false;
+    window.__v={ready:true,total:TOTAL,steps:steps.map(s=>({id:s.id,kind:s.kind,t0:s.tau0,t1:s.tau1})),INTRO,OUT0,render};
+    render(0);
+  }else{refresh()}
+  window.__app={state,refresh,steps,pins,map,openSheet,startPlay,stopPlay,applyDate,TOTAL:()=>TOTAL};
+  window.__ready=true;
+}
+/* ---------------- 日付(スライダー)モード ---------------- */
+const idxToT=i=>1853+i/12;
+const fmtIdx=i=>`${1853+Math.floor(i/12)}年${i%12+1}月`;
+function buildTicks(){
+  const el=$('#ticks');
+  steps.forEach(s=>{
+    const i=clamp(Math.round((s.start-1853)*12),0,191);
+    const b=document.createElement('b');b.style.left=(i/191*100)+'%';b.className=s.kind==='note'?'n':'';
+    b.title=(s.e?s.e.title:s.n.title);b.onclick=()=>{stopPlay();state.idx=i;$('#slider').value=i;state.mode='slider';refresh()};
+    el.appendChild(b);
+  });
+}
+function pinVisibleByFilter(p){return state.kinds.has(p.kind)&&(!state.group||p.groups.includes(state.group))}
+function cardStepAt(Tm){
+  let cur=null,nxt=null;
+  for(let i=0;i<steps.length;i++){if(steps[i].start<=Tm+1/12-1e-4){cur=steps[i];nxt=steps[i+1]||null}}
+  if(!cur)return null;
+  if(cur.kind==='event')return Tm<=cur.start+0.42?cur:null;
+  const end=Math.max(cur.n.t1,nxt?nxt.start:cur.n.t1);
+  return Tm<end-1e-4?cur:null;
+}
+function applyDate(idx){
+  const Tm=idxToT(idx);
+  pins.forEach(p=>{
+    const vis=p.year<=Tm+1/12-1e-4&&pinVisibleByFilter(p);
+    setPin(p,vis?'':'hidden',0);
+  });
+  setCard(cardStepAt(Tm));
+  $('#ylabel').innerHTML=fmtIdx(idx)+'<small>スライダー</small>';
+}
+function setPin(p,cls,g){
+  const e=p.el();if(!e)return;
+  e.classList.toggle('hidden',cls==='hidden');
+  e.classList.toggle('dim',cls==='dim');
+  e.classList.toggle('hot',cls==='hot');
+  const hot=(cls==='hot');
+  e.style.setProperty('--g',g);e.style.setProperty('--on',hot?1:0);
+  e.classList.toggle('sel',state.sel===p);
+  e.style.setProperty('--hs',state.sel===p?1.35:(hot?(1.18+.22*g):1));
+}
+function refresh(){
+  if(state.mode==='slider'){applyDate(state.idx);}
+  else applyState(stateAt(state.tau));
+}
+/* ---------------- カード ---------------- */
+function srcLinks(arr){return arr.map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label.replace(/^Wikipedia/,'Wikipedia'))}</a>`).join('')}
+let lastCardId=null;
+function setCard(s){
+  const el=$('#card');
+  const id=s?s.id:null;
+  if(id===lastCardId)return;lastCardId=id;
+  if(!s){el.innerHTML='';return}
+  if(s.kind==='event'){
+    const e=s.e;
+    el.innerHTML=`<div class="c"><span class="lab">事件</span><b>${esc(e.label)}</b><h3>${esc(e.title)}</h3><div class="meta">場所: ${esc(e.place)}</div><p>${esc(e.point)}</p><div class="srcs">出典: ${srcLinks(e.src)}</div></div>`;
+  }else{
+    const n=s.n;
+    el.innerHTML=`<div class="c note"><span class="lab">補足</span><b>${esc(n.label)}</b>${n.outside?`<span class="out">${esc(n.outside)}</span>`:''}<h3>${esc(n.title)}</h3><p class="full">${esc(n.text)}</p><p class="short">${esc(n.short||n.text)}</p><div class="srcs">出典: ${srcLinks(n.src)}</div></div>`;
+  }
+}
+/* ---------------- タイムライン(再生・動画共通) ---------------- */
+function stateAt(tau){
+  let si=-1;
+  if(tau>=OUT0)si=steps.length;
+  else if(tau>=INTRO){for(let i=0;i<steps.length;i++)if(tau>=steps[i].tau0&&tau<steps[i].tau1){si=i;break}}
+  const step=steps[si]||null;
+  const vis={};
+  pins.forEach(p=>{
+    const rt=p.revTau;
+    if(tau<rt)return;
+    let c='dim';
+    if(si===steps.length){c=(tau>=OUT0+0.15+1.4)?'full':'dim';if(!p.revStep&&tau-rt<1.4)c='hot'}
+    else if(step&&step.kind==='event'&&p.revStep===step)c=p.hotFlag?'hot':((tau-rt<1.3)?'new':'dim');
+    vis[p.id]=c;
+  });
+  let label,sub='';
+  if(si===-1){label='1853年';sub='ペリー来航'}
+  else if(si===steps.length){label='1868年';sub='幕末の洛中'}
+  else if(step.kind==='event'){label=step.e.label.replace(/^(\d+年)(\d+月)?$/,'$1$2');sub=step.e.title}
+  else {label=step.n.label;sub='補足'}
+  return {si,step,vis,label,sub,tau};
+}
+function applyState(st){
+  const g=0.5+0.5*Math.sin(st.tau*9);
+  pins.forEach(p=>{
+    const c=st.vis[p.id];
+    if(!c||!pinVisibleByFilter(p)){setPin(p,'hidden',0);return}
+    if(c==='full'){setPin(p,'',0);return}
+    if(VIDEO||state.mode==='play')setPin(p,c,g);else setPin(p,c,g);
+  });
+  setCard(st.step&&st.si<steps.length?st.step:null);
+  $('#ylabel').innerHTML=`${esc(st.label)}<small>${esc(st.sub)}</small>`;
+}
+/* ---- 再生 ---- */
+let raf=0,t0=0;
+function startPlay(){
+  closeSheet();
+  if(!VIDEO)map.fitBounds(L.latLngBounds(pins.map(p=>[p.lat,p.lon])),{paddingTopLeft:[16,150],paddingBottomRight:[16,190],maxZoom:15,animate:false});
+  state.playing=true;state.mode='play';$('#play').textContent='❚❚';$('#play').setAttribute('aria-label','一時停止');
+  const from=(state.tau>=TOTAL-0.05)?0:state.tau;
+  t0=performance.now()-from*1000;
+  const loop=now=>{
+    if(!state.playing)return;
+    state.tau=Math.min(TOTAL,(now-t0)/1000);
+    const st=stateAt(state.tau);applyState(st);
+    // スライダーも追従
+    if(st.step&&st.si<steps.length){const i=clamp(Math.round((st.step.start-1853)*12),0,191);$('#slider').value=i;state.idx=i}
+    else if(st.si===steps.length){$('#slider').value=191;state.idx=191}
+    if(state.tau>=TOTAL){stopPlay(true);return}
+    raf=requestAnimationFrame(loop);
+  };
+  raf=requestAnimationFrame(loop);
+}
+function stopPlay(done){
+  state.playing=false;cancelAnimationFrame(raf);$('#play').textContent='▶';$('#play').setAttribute('aria-label','再生');
+  if(done){state.mode='slider';state.idx=191;state.tau=0;$('#slider').value=191;lastCardId=null;applyDate(191)}
+  else if(state.mode==='play'){state.mode='slider';lastCardId=null;applyDate(state.idx)}
+}
+/* ---------------- 動画: 時刻 tau のフレームを描画 ---------------- */
+function focusCam(s){
+  const lst=s.pins.filter(p=>p.hotFlag);
+  if(!lst.length)return WIDE;
+  const b=L.latLngBounds(lst.map(p=>[p.lat,p.lon]));
+  let z=map.getBoundsZoom(b.pad(0.15),false,L.point(520,420));
+  z=clamp(z,14.9,16.4);
+  const c=b.getCenter();
+  return {c:[c.lat,c.lng],z};
+}
+function camOf(si){
+  if(si<0||si>=steps.length)return WIDE;
+  const s=steps[si];
+  if(s.kind==='event'){if(!s.cam)s.cam=focusCam(s);return s.cam}
+  return WIDE;
+}
+function lerpCam(a,b,u){
+  u=ease(u);
+  return {c:[a.c[0]+(b.c[0]-a.c[0])*u,a.c[1]+(b.c[1]-a.c[1])*u],z:a.z+(b.z-a.z)*u};
+}
+async function waitTiles(){
+  const g=window.__gsi;
+  await new Promise(r=>setTimeout(r,60));
+  for(let i=0;i<400;i++){
+    const ts=Object.values(g._tiles||{});
+    const cur=ts.filter(t=>t.current);
+    if(cur.length>0&&cur.every(t=>t.loaded)&&!g._loading)break;
+    if(cur.length>0&&cur.every(t=>t.loaded)&&i>6)break;
+    await new Promise(r=>setTimeout(r,30));
+  }
+  await new Promise(r=>requestAnimationFrame(()=>requestAnimationFrame(r)));
+  await new Promise(r=>setTimeout(r,40));
+}
+async function render(tau){
+  const st=stateAt(tau);
+  // camera
+  let cam;
+  if(st.si===-1)cam=WIDE;
+  else if(st.si===steps.length)cam=WIDE;
+  else{
+    const prev=camOf(st.si-1),cur=camOf(st.si);
+    cam=lerpCam(prev,cur,(tau-st.step.tau0)/0.7);
+  }
+  // 焦点を画面右上寄りへ(左下のカードを避ける)
+  const W=map.getSize();
+  const off=cam===WIDE||cam.z<=14.25?L.point(0,0):L.point(-W.x*0.07,W.y*0.07);
+  const cp=map.project(L.latLng(cam.c[0],cam.c[1]),cam.z).add(off);
+  map.setView(map.unproject(cp,cam.z),cam.z,{animate:false});
+  applyState(st);
+  await waitTiles();
+  return {si:st.si,label:st.label};
+}
+/* ---------------- 詳細シート ---------------- */
+function openSheet(p){
+  stopPlay();
+  state.sel=p;pins.forEach(q=>q.el()&&(q.el().classList.toggle('sel',q===p),q.el().style.setProperty('--hs',q===p?1.35:1)));
+  const sh=$('#sheet');
+  const ev=D.events.find(e=>e.id===p.event_id);
+  const yr=p.year_conf==='頃'&&!/頃/.test(p.year_label)?p.year_label+'頃':p.year_label;
+  sh.innerHTML=`<button class="x" aria-label="閉じる">×</button>
+  <h2>${esc(p.name)}</h2>
+  <div class="badges"><span class="badge"><i class="${p.kind}"></i>${KIND[p.kind]}</span><span class="badge">${esc(yr)}</span><span class="badge conf-${esc(p.conf)}">確度: ${esc(p.conf)}</span>${ev?`<span class="badge">${esc(ev.title)}</span>`:''}${p.groups.map(g=>`<span class="badge">${esc(g)}</span>`).join('')}</div>
+  <h4>由緒・史実</h4><p>${esc(p.why)}</p>
+  <h4>検証・考証</h4><p>${esc(p.check)}</p>
+  ${p.rumor?`<div class="rumor"><h4>噂・伝承(史実とは別)</h4><p>${esc(p.rumor)}</p></div>`:''}
+  <h4>出典</h4><ul>${p.sources.map(s=>`<li><a href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.label)}</a></li>`).join('')}</ul>
+  <div class="foot">年の扱い: ${esc(p.year_conf)}。「頃」は出典で年月日が確定できないもの。文章はWikipediaなどの出典を読んで要約したもので、現地の駒札・看板の文面は転載していません。</div>`;
+  sh.classList.add('open');
+  sh.querySelector('.x').onclick=closeSheet;
+  sh.scrollTop=0;
+  {const sz=map.getSize(),z=map.getZoom();const off=innerWidth>=900?L.point(sz.x*0.2,0):L.point(0,sz.y*0.22);
+   map.panTo(map.unproject(map.project(L.latLng(p.lat,p.lon),z).add(off),z),{animate:true});}
+}
+function closeSheet(){
+  state.sel=null;pins.forEach(q=>q.el()&&(q.el().classList.remove('sel'),q.el().style.setProperty('--hs',1)));
+  $('#sheet').classList.remove('open');
+}
+/* ---------------- 現在地 ---------------- */
+let locLayer=null;
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>e.style.display='none',3500)}
+function locate(){
+  if(!navigator.geolocation){toast('この端末では現在地を取得できません');return}
+  toast('現在地を取得しています…');
+  navigator.geolocation.getCurrentPosition(pos=>{
+    const ll=[pos.coords.latitude,pos.coords.longitude];
+    if(locLayer)locLayer.remove();
+    locLayer=L.layerGroup([
+      L.circle(ll,{radius:Math.min(pos.coords.accuracy,800),color:'#2c6bd6',weight:1,fillOpacity:.1}),
+      L.circleMarker(ll,{radius:8,color:'#fff',weight:3,fillColor:'#2c6bd6',fillOpacity:1})
+    ]).addTo(map);
+    map.setView(ll,Math.max(map.getZoom(),16));
+    const inKyoto=ll[0]>34.95&&ll[0]<35.08&&ll[1]>135.70&&ll[1]<135.82;
+    toast(inKyoto?'現在地を表示しました':'現在地は洛中の外です(地図の範囲外)');
+  },err=>{toast(err.code===1?'位置情報の許可がありません。ブラウザの設定を確認してください':'現在地を取得できませんでした')},{enableHighAccuracy:true,timeout:12000,maximumAge:30000});
+}
+</script>
+</body>
+</html>
