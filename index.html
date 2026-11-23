@@ -20,18 +20,21 @@ body{overflow:hidden}
 button{font:inherit;color:inherit;cursor:pointer}
 .ui{position:absolute;z-index:500}
 /* --- 上部 --- */
-#topbar{top:max(8px,env(safe-area-inset-top));left:8px;right:8px;display:flex;gap:8px;align-items:center;pointer-events:none}
+#inapp{position:absolute;z-index:600;top:0;left:0;right:0;padding:max(4px,env(safe-area-inset-top)) 10px 4px;background:#fff4d6;color:#5a4300;font-size:11px;line-height:1.4;text-align:center;border-bottom:1px solid #e6d29a}
+#inapp[hidden]{display:none}
+body.inapp{--bn:34px}
+#topbar{top:calc(max(8px,env(safe-area-inset-top)) + var(--bn,0px));left:8px;right:8px;display:flex;gap:8px;align-items:center;pointer-events:none}
 #title{pointer-events:auto;background:var(--card);border-radius:12px;padding:7px 12px;box-shadow:var(--shadow);font-weight:700;font-size:15px;line-height:1.2;flex:1;min-width:0}
 #title small{display:block;font-weight:400;color:var(--sub);font-size:11px;margin-top:2px}
 .btn{pointer-events:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);min-height:44px;min-width:44px;padding:0 12px;font-size:14px;font-weight:600}
 .btn[aria-pressed="true"]{background:#2b2620;color:#fff;border-color:#2b2620}
-#filters{top:calc(max(8px,env(safe-area-inset-top)) + 56px);left:8px;right:8px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
+#filters{top:calc(max(8px,env(safe-area-inset-top)) + 56px + var(--bn,0px));left:8px;right:8px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
 .chip{pointer-events:auto;display:inline-flex;align-items:center;gap:6px;background:var(--card);border:1px solid var(--line);border-radius:999px;padding:0 12px;min-height:36px;font-size:13px;box-shadow:0 2px 8px rgba(30,20,10,.15)}
 .chip[aria-pressed="false"]{opacity:.45}
 .chip i{width:12px;height:12px;border-radius:50%;display:inline-block}
 .chip i.R{background:var(--red)} .chip i.O{background:var(--orange)} .chip i.W{background:#fff;border:2px dashed #444}
 select.chip{appearance:auto;padding-right:6px}
-#legend{top:calc(max(8px,env(safe-area-inset-top)) + 104px);left:8px;background:var(--card);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);font-size:12.5px;line-height:1.7;max-width:270px}
+#legend{top:calc(max(8px,env(safe-area-inset-top)) + 104px + var(--bn,0px));left:8px;background:var(--card);border-radius:12px;padding:10px 12px;box-shadow:var(--shadow);font-size:12.5px;line-height:1.7;max-width:270px}
 #legend[hidden]{display:none}
 #legend div{display:flex;gap:8px;align-items:center}
 #legend i{flex:none;width:12px;height:12px;border-radius:50%}
@@ -146,6 +149,7 @@ body.video .pin.dim{opacity:.66}
 </style>
 </head>
 <body>
+<div id="inapp" hidden>現在地はスマホのブラウザ(Safari/Chrome)で開くと使えます。右上のメニューから「ブラウザで開く」を選んでください。</div>
 <div id="map"></div>
 <div id="topbar" class="ui vshow">
   <div id="title">京都・幕末史跡マップ<small id="sub">洛中の史跡を時代順に(1853〜1868)</small></div>
@@ -179,6 +183,7 @@ body.video .pin.dim{opacity:.66}
 "use strict";
 const Q=new URLSearchParams(location.search);
 const VIDEO=Q.has('video');
+if(!VIDEO&&/Instagram|Barcelona|Threads|FBAN|FBAV|FB_IAB/i.test(navigator.userAgent)){document.body.classList.add('inapp');document.getElementById('inapp').hidden=false}
 if(VIDEO)document.body.classList.add('video');
 const KIND={R:"現存する建物",O:"石碑・石標",W:"跡地(位置は推定)"};
 const $=s=>document.querySelector(s);
@@ -445,10 +450,11 @@ function closeSheet(){
   $('#sheet').classList.remove('open');
 }
 /* ---------------- 現在地 ---------------- */
+const LOCMSG='現在地はスマホのブラウザ(Safari/Chrome)で開くと使えます。右上のメニューから『ブラウザで開く』を選んでください';
 let locLayer=null;
-function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>e.style.display='none',3500)}
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>e.style.display='none',7000)}
 function locate(){
-  if(!navigator.geolocation){toast('この端末では現在地を取得できません');return}
+  if(!navigator.geolocation){toast(LOCMSG);return}
   toast('現在地を取得しています…');
   navigator.geolocation.getCurrentPosition(pos=>{
     const ll=[pos.coords.latitude,pos.coords.longitude];
@@ -460,7 +466,7 @@ function locate(){
     map.setView(ll,Math.max(map.getZoom(),16));
     const inKyoto=ll[0]>34.95&&ll[0]<35.08&&ll[1]>135.70&&ll[1]<135.82;
     toast(inKyoto?'現在地を表示しました':'現在地は洛中の外です(地図の範囲外)');
-  },err=>{toast(err.code===1?'位置情報の許可がありません。ブラウザの設定を確認してください':'現在地を取得できませんでした')},{enableHighAccuracy:true,timeout:12000,maximumAge:30000});
+  },err=>{toast(LOCMSG)},{enableHighAccuracy:true,timeout:12000,maximumAge:30000});
 }
 </script>
 </body>
