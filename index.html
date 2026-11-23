@@ -90,17 +90,6 @@ body.video #credit{display:none}
 .badge.conf-伝承{border-color:#7a4a9a;color:#5a3275}
 #sheet .route{display:flex;align-items:center;justify-content:center;min-height:52px;margin:6px 0 2px;border-radius:12px;background:#2b2620;color:#fff;font-weight:700;font-size:16px;text-decoration:none}
 #sheet .route:active{background:#444}
-#routeinfo{left:8px;right:8px;bottom:calc(104px + env(safe-area-inset-bottom));background:#2b2620;color:#fff;border-radius:14px;padding:12px 14px;display:flex;gap:10px;align-items:center;font-size:15px;line-height:1.5;box-shadow:var(--shadow);z-index:650;max-width:560px}
-#routeinfo[hidden]{display:none}
-#routeinfo div{flex:1}
-#routeinfo small{font-size:12px;opacity:.85}
-#routeinfo button{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid #777;background:transparent;color:#fff;font-size:20px}
-body.routing #card{display:none}
-#sheet button.route{width:100%;border:none;font-family:inherit}
-#sheet button.route:disabled{opacity:.7}
-#sheet .route2row{display:flex;gap:8px;margin-top:8px}
-#sheet .route2{flex:1;display:flex;align-items:center;justify-content:center;min-height:46px;border-radius:12px;border:2px solid #2b2620;background:#fff;color:#26221d;font-weight:700;font-size:14px;text-decoration:none;font-family:inherit;cursor:pointer}
-#sheet .routesmall{font-size:11px;line-height:1.5;color:var(--sub);margin:1px 2px 0}
 #sheet .routenote{font-size:13px;line-height:1.6;color:var(--sub);margin:2px 2px 0}
 #sheet .est{margin:0 0 8px;padding:7px 10px;border:1px dashed #444;border-radius:10px;background:#fff;font-size:13.5px;font-weight:600}
 #sheet h4{margin:14px 0 4px;font-size:13px;letter-spacing:.05em;color:var(--sub)}
@@ -190,7 +179,7 @@ body.video .pin.dim{opacity:.66}
   <div class="no-v"><i class="Y"></i>黄: 看板・駒札のみ(今回は対象外)</div>
   <div><i class="W"></i>白破線: 跡地で位置が推定</div>
   <div class="howto"><b>使い方</b>
-    <ul><li>📍を押して『ここへの経路』を押すと、現在地からの徒歩ルートがこの地図に出ます。</li>
+    <ul><li>📍を押して『Googleマップで開く』を押すと、Googleマップが立ち上がります。</li>
     <li>現在地と経路は、スマホのSafari/Chromeで開くと使えます。</li>
     <li>Threadsなどのアプリ内で開いた場合は、右上のメニューから「ブラウザで開く」を選んでください。</li></ul></div>
   <p>淡い色は、すでに出てきた史跡です。下のスライダーか▶で時代順にたどれます。<a href="kyoto_bakumatsu_32s.mp4" target="_blank" rel="noopener">32秒の動画</a></p>
@@ -203,7 +192,6 @@ body.video .pin.dim{opacity:.66}
   <div id="credit">地図: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院 淡色地図</a> ／ 史実: Wikipedia(CC BY-SA) ／ 位置: OpenStreetMap contributors ／ <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a></div>
 </div>
 <aside id="sheet" class="ui" aria-live="polite"></aside>
-<div id="routeinfo" class="ui" hidden></div>
 <div id="toast"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
@@ -460,12 +448,10 @@ async function render(tau){
 function routeURL(p){
   const la=Number(p&&p.lat),lo=Number(p&&p.lon);
   if(!isFinite(la)||!isFinite(lo))return null;
-  const ll=la.toFixed(6)+','+lo.toFixed(6);
-  // 出発地を空(=現在地)にし、目的地を座標でパスに置く形式。徒歩は data=!4m2!4m1!3e2
-  return 'https://www.google.com/maps/dir//'+ll+'/@'+ll+',17z/data=!4m2!4m1!3e2';
+  return 'https://www.google.com/maps/dir/?api=1&destination='+la.toFixed(6)+'%2C'+lo.toFixed(6)+'&travelmode=walking';
 }
 function openSheet(p){
-  stopPlay();clearRoute();
+  stopPlay();
   {const l=$('#legend');if(!l.hidden){l.hidden=true;$('#btn-legend').setAttribute('aria-pressed','false')}}
   state.sel=p;pins.forEach(q=>q.el()&&(q.el().classList.toggle('sel',q===p),q.el().style.setProperty('--hs',q===p?1.35:1)));
   const sh=$('#sheet');
@@ -475,10 +461,8 @@ function openSheet(p){
   <h2>${esc(p.name)}</h2>
   <div class="badges"><span class="badge"><i class="${p.kind}"></i>${KIND[p.kind]}</span><span class="badge">${esc(yr)}</span><span class="badge conf-${esc(p.conf)}">確度: ${esc(p.conf)}</span>${ev?`<span class="badge">${esc(ev.title)}</span>`:''}${p.groups.map(g=>`<span class="badge">${esc(g)}</span>`).join('')}</div>
   ${p.kind==='W'?'<p class="est">位置は推定です。実際の場所と少しずれている可能性があります。</p>':''}
-  <button class="route" id="route-go">ここへの経路(徒歩)</button>
-  <div class="routenote">現在地からの徒歩ルートを、このページの地図に表示します。${p.kind==='W'?'(目的地も推定位置です)':''}</div>
-  <div class="route2row"><a class="route2" id="route-g" href="${routeURL(p)||'#'}">Googleマップで開く</a><button class="route2" id="route-copy">座標をコピー</button></div>
-  <div class="routesmall">Googleマップが開かない、または目的地が空のときは「座標をコピー」を押し、地図アプリの検索欄に貼ってください。</div>
+  <a class="route" href="${routeURL(p)||'#'}" target="_blank" rel="noopener">Googleマップで開く</a>
+  <div class="routenote">Googleマップが立ち上がります。開かない場合は、右上のメニューから『ブラウザで開く』を選んでください。</div>
   <h4>由緒・史実</h4><p>${esc(p.why)}</p>
   <h4>検証・考証</h4><p>${esc(p.check)}</p>
   ${p.rumor?`<div class="rumor"><h4>噂・伝承(史実とは別)</h4><p>${esc(p.rumor)}</p></div>`:''}
@@ -486,9 +470,6 @@ function openSheet(p){
   <div class="foot">年の扱い: ${esc(p.year_conf)}。「頃」は出典で年月日が確定できないもの。文章はWikipediaなどの出典を読んで要約したもので、現地の駒札・看板の文面は転載していません。</div>`;
   sh.classList.add('open');
   sh.querySelector('.x').onclick=closeSheet;
-  $('#route-go').onclick=()=>routeTo(state.sel||p);
-  $('#route-copy').onclick=()=>copyLL(state.sel||p);
-  $('#route-g').onclick=e=>{e.preventDefault();const q=state.sel||p;const u=routeURL(q);console.log('[route]',q.name,q.lat,q.lon,u);if(u)window.location.href=u;};
   sh.scrollTop=0;
   {const sz=map.getSize(),z=map.getZoom();const off=innerWidth>=900?L.point(sz.x*0.2,0):L.point(0,sz.y*0.22);
    map.panTo(map.unproject(map.project(L.latLng(p.lat,p.lon),z).add(off),z),{animate:true});}
@@ -496,49 +477,6 @@ function openSheet(p){
 function closeSheet(){
   state.sel=null;pins.forEach(q=>q.el()&&(q.el().classList.remove('sel'),q.el().style.setProperty('--hs',1)));
   $('#sheet').classList.remove('open');
-}
-/* ---------------- ページ内の徒歩ルート ---------------- */
-let routeLayer=null;
-function clearRoute(){if(routeLayer){routeLayer.remove();routeLayer=null}const r=$('#routeinfo');if(r)r.hidden=true;document.body.classList.remove('routing')}
-function copyLL(p){
-  const t=Number(p.lat).toFixed(6)+','+Number(p.lon).toFixed(6);
-  const done=()=>toast('座標をコピーしました: '+t);
-  const fb=()=>{try{const a=document.createElement('textarea');a.value=t;a.style.cssText='position:fixed;opacity:0';document.body.appendChild(a);a.select();document.execCommand('copy');a.remove();done()}catch(e){toast('コピーできませんでした。座標: '+t)}};
-  if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(t).then(done,fb);else fb();
-}
-function getPos(){return new Promise((res,rej)=>{
-  if(!navigator.geolocation){rej({code:0});return}
-  navigator.geolocation.getCurrentPosition(res,rej,{enableHighAccuracy:true,timeout:12000,maximumAge:30000});
-})}
-async function routeTo(p){
-  const btn=$('#route-go');btn.disabled=true;btn.textContent='現在地を取得しています…';
-  const reset=()=>{btn.disabled=false;btn.textContent='ここへの経路(徒歩)'};
-  let pos;
-  try{pos=await getPos()}catch(err){reset();toast(err&&err.code===1?LOC_DENIED:(err&&err.code===0?LOCMSG:LOC_FAIL));return}
-  const a=[pos.coords.latitude,pos.coords.longitude],b=[Number(p.lat),Number(p.lon)];
-  btn.textContent='ルートを探しています…';
-  try{
-    const url=`https://routing.openstreetmap.de/routed-foot/route/v1/foot/${a[1].toFixed(6)},${a[0].toFixed(6)};${b[1].toFixed(6)},${b[0].toFixed(6)}?overview=full&geometries=geojson&steps=false`;
-    const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),15000);
-    const r=await fetch(url,{signal:ctl.signal});clearTimeout(to);
-    const d=await r.json();
-    if(d.code!=='Ok'||!d.routes||!d.routes[0])throw new Error('noroute');
-    const rt=d.routes[0];
-    clearRoute();
-    const line=L.geoJSON(rt.geometry,{style:{color:'#fff',weight:10,opacity:.9}});
-    const line2=L.geoJSON(rt.geometry,{style:{color:'#2c6bd6',weight:6,opacity:.95}});
-    const me=L.circleMarker(a,{radius:8,color:'#fff',weight:3,fillColor:'#2c6bd6',fillOpacity:1});
-    routeLayer=L.layerGroup([line,line2,me]).addTo(map);
-    const mins=Math.max(1,Math.round(rt.distance/80)); // 徒歩 約4.8km/h
-    const km=rt.distance>=1000?(rt.distance/1000).toFixed(1)+'km':Math.round(rt.distance)+'m';
-    const out=!(a[0]>34.95&&a[0]<35.08&&a[1]>135.70&&a[1]<135.82);
-    $('#routeinfo').innerHTML=`<div><b>${esc(p.name.replace(/\(.*$/,''))}</b>まで 徒歩約${mins}分・${km}${out?'<br><small>現在地は洛中の外です。ルートは遠回りになることがあります。</small>':''}</div><button id="routeinfo-x" aria-label="ルートを消す">×</button>`;
-    $('#routeinfo').hidden=false;document.body.classList.add('routing');
-    $('#routeinfo-x').onclick=clearRoute;
-    closeSheet();
-    map.fitBounds(L.latLngBounds([a,b]),{paddingTopLeft:[30,170],paddingBottomRight:[30,190],maxZoom:17});
-    reset();
-  }catch(e){reset();toast('ルートを取得できませんでした。通信状況を確認して、もう一度お試しください')}
 }
 /* ---------------- 現在地 ---------------- */
 const LOC_DENIED='ブラウザの位置情報が許可されていません。Safari/Chromeのサイト設定で許可してください';
