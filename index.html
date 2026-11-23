@@ -90,6 +90,10 @@ body.video #credit{display:none}
 .badge.conf-伝承{border-color:#7a4a9a;color:#5a3275}
 #sheet .route{display:flex;align-items:center;justify-content:center;min-height:52px;margin:6px 0 2px;border-radius:12px;background:#2b2620;color:#fff;font-weight:700;font-size:16px;text-decoration:none}
 #sheet .route:active{background:#444}
+#sheet .fallback{margin-top:10px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#fff;font-size:13.5px;line-height:1.65}
+#sheet .fallback ol{margin:4px 0 0;padding-left:1.3em}
+#sheet .fallback li{margin-bottom:3px}
+#sheet .kw{margin:4px 0;padding:8px 10px;background:#f3efe6;border-radius:8px;font-size:16px;font-weight:700;user-select:all;-webkit-user-select:all}
 #sheet .routenote{font-size:13px;line-height:1.6;color:var(--sub);margin:2px 2px 0}
 #sheet .est{margin:0 0 8px;padding:7px 10px;border:1px dashed #444;border-radius:10px;background:#fff;font-size:13.5px;font-weight:600}
 #sheet h4{margin:14px 0 4px;font-size:13px;letter-spacing:.05em;color:var(--sub)}
@@ -463,6 +467,10 @@ function openSheet(p){
   ${p.kind==='W'?'<p class="est">位置は推定です。実際の場所と少しずれている可能性があります。</p>':''}
   <a class="route" href="${routeURL(p)||'#'}" target="_blank" rel="noopener">Googleマップで開く</a>
   <div class="routenote">Googleマップが立ち上がります。開かない場合は、右上のメニューから『ブラウザで開く』を選んでください。</div>
+  <div class="fallback"><b>Googleマップが空白のとき</b>
+    <ol><li>Googleマップのアプリを、ご自身で開く。</li>
+    <li>検索欄に、次の言葉を入れる(長押しでコピーできます)。<div class="kw">${esc(p.name.replace(/[（(].*$/,'').trim())} 京都</div></li>
+    <li>出てきた場所を選び、「経路」を押して、人の形(徒歩)を選ぶ。</li></ol></div>
   <h4>由緒・史実</h4><p>${esc(p.why)}</p>
   <h4>検証・考証</h4><p>${esc(p.check)}</p>
   ${p.rumor?`<div class="rumor"><h4>噂・伝承(史実とは別)</h4><p>${esc(p.rumor)}</p></div>`:''}
