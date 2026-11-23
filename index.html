@@ -90,6 +90,7 @@ body.video #credit{display:none}
 .badge.conf-伝承{border-color:#7a4a9a;color:#5a3275}
 #sheet .route{display:flex;align-items:center;justify-content:center;min-height:52px;margin:6px 0 2px;border-radius:12px;background:#2b2620;color:#fff;font-weight:700;font-size:16px;text-decoration:none}
 #sheet .route:active{background:#444}
+#sheet .inapp-route{margin:6px 0 2px;padding:12px 14px;border:2px dashed #b58a00;border-radius:12px;background:#fff8e1;color:#4d3a00;font-size:14px;line-height:1.65}
 #sheet .routenote{font-size:13px;line-height:1.6;color:var(--sub);margin:2px 2px 0}
 #sheet .est{margin:0 0 8px;padding:7px 10px;border:1px dashed #444;border-radius:10px;background:#fff;font-size:13.5px;font-weight:600}
 #sheet h4{margin:14px 0 4px;font-size:13px;letter-spacing:.05em;color:var(--sub)}
@@ -189,14 +190,14 @@ body.video .pin.dim{opacity:.66}
   <button id="play" aria-label="再生">▶</button>
   <div id="sl"><div id="ticks"></div><input id="slider" type="range" min="0" max="191" step="1" value="191" aria-label="年代スライダー"></div>
   <div id="ylabel" class="vshow">1868年12月</div>
-  <div id="credit">地図: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院 淡色地図</a> ／ 史実: Wikipedia(CC BY-SA) ／ 位置: OpenStreetMap contributors ／ <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> ／ 版: 20261123d</div>
+  <div id="credit">地図: <a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank" rel="noopener">国土地理院 淡色地図</a> ／ 史実: Wikipedia(CC BY-SA) ／ 位置: OpenStreetMap contributors ／ <a href="https://leafletjs.com" target="_blank" rel="noopener">Leaflet</a> ／ 版: 20261123e</div>
 </div>
 <aside id="sheet" class="ui" aria-live="polite"></aside>
 <div id="toast"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 "use strict";
-const BUILD='20261123d';
+const BUILD='20261123e';
 /* 古いページが端末に残っていたら、最新版のURLへ自動で切り替える */
 fetch('build.txt?t='+Date.now(),{cache:'no-store'}).then(r=>r.ok?r.text():BUILD).then(t=>{t=String(t).trim();if(t&&t!==BUILD&&!/^[<\s]/.test(t)){const u=new URL(location.href);if(u.searchParams.get('v')!==t){u.searchParams.set('v',t);location.replace(u.toString())}}}).catch(()=>{});
 const Q=new URLSearchParams(location.search);
@@ -486,8 +487,8 @@ function openSheet(p){
   <h2>${esc(p.name)}</h2>
   <div class="badges"><span class="badge"><i class="${p.kind}"></i>${KIND[p.kind]}</span><span class="badge">${esc(yr)}</span><span class="badge conf-${esc(p.conf)}">確度: ${esc(p.conf)}</span>${ev?`<span class="badge">${esc(ev.title)}</span>`:''}${p.groups.map(g=>`<span class="badge">${esc(g)}</span>`).join('')}</div>
   ${p.kind==='W'?'<p class="est">位置は推定です。実際の場所と少しずれている可能性があります。</p>':''}
-  <a class="route" href="${routeURL(p)||'#'}" target="_blank" rel="noopener">Googleマップで開く</a>
-  <div class="routenote">Googleマップが立ち上がります。開かない場合は、右上のメニューから『ブラウザで開く』を選んでください。</div>
+  ${INAPP?`<div class="inapp-route"><b>経路はブラウザで開くと使えます</b><br>このアプリの中では、Googleマップに目的地が渡らず空欄になります。右上のメニューから『ブラウザで開く』を選び、開いたページでもう一度この📍を押してください。</div>`:`<a class="route gmap" href="${routeURL(p)||'#'}" target="_blank" rel="noopener">Googleマップで開く</a>
+  <div class="routenote">Googleマップが立ち上がります。開かない場合は、右上のメニューから『ブラウザで開く』を選んでください。</div>`}
   <h4>由緒・史実</h4><p>${esc(p.why)}</p>
   <h4>検証・考証</h4><p>${esc(p.check)}</p>
   ${p.rumor?`<div class="rumor"><h4>噂・伝承(史実とは別)</h4><p>${esc(p.rumor)}</p></div>`:''}
@@ -495,7 +496,7 @@ function openSheet(p){
   <div class="foot">年の扱い: ${esc(p.year_conf)}。「頃」は出典で年月日が確定できないもの。文章はWikipediaなどの出典を読んで要約したもので、現地の駒札・看板の文面は転載していません。</div>`;
   sh.classList.add('open');
   sh.querySelector('.x').onclick=closeSheet;
-  sh.querySelector('a.route').onclick=e=>{e.preventDefault();openMaps(state.sel||p)};
+  {const g=sh.querySelector('a.gmap');if(g)g.onclick=e=>{e.preventDefault();openMaps(state.sel||p)}}
   sh.scrollTop=0;
   {const sz=map.getSize(),z=map.getZoom();const off=innerWidth>=900?L.point(sz.x*0.2,0):L.point(0,sz.y*0.22);
    map.panTo(map.unproject(map.project(L.latLng(p.lat,p.lon),z).add(off),z),{animate:true});}
