@@ -81,6 +81,10 @@ body.video #credit{display:none}
 .badge.conf-定説{border-color:#2f7d4f;color:#1e5a37}
 .badge.conf-異説{border-color:#b26a00;color:#7a4700}
 .badge.conf-伝承{border-color:#7a4a9a;color:#5a3275}
+#sheet .route{display:flex;align-items:center;justify-content:center;min-height:52px;margin:6px 0 2px;border-radius:12px;background:#2b2620;color:#fff;font-weight:700;font-size:16px;text-decoration:none}
+#sheet .route:active{background:#444}
+#sheet .routenote{font-size:11.5px;color:var(--sub);margin:2px 2px 0}
+#sheet .est{margin:0 0 8px;padding:7px 10px;border:1px dashed #444;border-radius:10px;background:#fff;font-size:13.5px;font-weight:600}
 #sheet h4{margin:14px 0 4px;font-size:13px;letter-spacing:.05em;color:var(--sub)}
 #sheet p{margin:0;font-size:14.5px;line-height:1.75}
 #sheet .rumor{background:#f4eefb;border:1px dashed #9b78bd;border-radius:10px;padding:8px 10px;margin-top:14px}
@@ -434,6 +438,8 @@ function openSheet(p){
   sh.innerHTML=`<button class="x" aria-label="閉じる">×</button>
   <h2>${esc(p.name)}</h2>
   <div class="badges"><span class="badge"><i class="${p.kind}"></i>${KIND[p.kind]}</span><span class="badge">${esc(yr)}</span><span class="badge conf-${esc(p.conf)}">確度: ${esc(p.conf)}</span>${ev?`<span class="badge">${esc(ev.title)}</span>`:''}${p.groups.map(g=>`<span class="badge">${esc(g)}</span>`).join('')}</div>
+  ${p.kind==='W'?'<p class="est">位置は推定です。実際の場所と少しずれている可能性があります。</p>':''}
+  <a class="route" href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}&travelmode=walking" target="_blank" rel="noopener">ここへの経路(徒歩)</a>${p.kind==='W'?'<div class="routenote">※ 経路の目的地も推定位置です</div>':''}
   <h4>由緒・史実</h4><p>${esc(p.why)}</p>
   <h4>検証・考証</h4><p>${esc(p.check)}</p>
   ${p.rumor?`<div class="rumor"><h4>噂・伝承(史実とは別)</h4><p>${esc(p.rumor)}</p></div>`:''}
