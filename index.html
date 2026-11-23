@@ -449,7 +449,9 @@ async function render(tau){
 function routeURL(p){
   const la=Number(p&&p.lat),lo=Number(p&&p.lon);
   if(!isFinite(la)||!isFinite(lo))return null;
-  return 'https://www.google.com/maps/dir/?api=1&destination='+la.toFixed(6)+'%2C'+lo.toFixed(6)+'&travelmode=walking';
+  const ll=la.toFixed(6)+','+lo.toFixed(6);
+  // 出発地を空(=現在地)にし、目的地を座標でパスに置く形式。徒歩は data=!4m2!4m1!3e2
+  return 'https://www.google.com/maps/dir//'+ll+'/@'+ll+',17z/data=!4m2!4m1!3e2';
 }
 function openSheet(p){
   stopPlay();
