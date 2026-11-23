@@ -446,6 +446,11 @@ async function render(tau){
   return {si:st.si,label:st.label};
 }
 /* ---------------- 詳細シート ---------------- */
+function routeURL(p){
+  const la=Number(p&&p.lat),lo=Number(p&&p.lon);
+  if(!isFinite(la)||!isFinite(lo))return null;
+  return 'https://www.google.com/maps/dir/?api=1&destination='+la.toFixed(6)+'%2C'+lo.toFixed(6)+'&travelmode=walking';
+}
 function openSheet(p){
   stopPlay();
   {const l=$('#legend');if(!l.hidden){l.hidden=true;$('#btn-legend').setAttribute('aria-pressed','false')}}
@@ -457,7 +462,7 @@ function openSheet(p){
   <h2>${esc(p.name)}</h2>
   <div class="badges"><span class="badge"><i class="${p.kind}"></i>${KIND[p.kind]}</span><span class="badge">${esc(yr)}</span><span class="badge conf-${esc(p.conf)}">確度: ${esc(p.conf)}</span>${ev?`<span class="badge">${esc(ev.title)}</span>`:''}${p.groups.map(g=>`<span class="badge">${esc(g)}</span>`).join('')}</div>
   ${p.kind==='W'?'<p class="est">位置は推定です。実際の場所と少しずれている可能性があります。</p>':''}
-  <a class="route" href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}&travelmode=walking">ここへの経路(徒歩)</a>
+  <a class="route" href="${routeURL(p)||'#'}">ここへの経路(徒歩)</a>
   <div class="routenote">Googleマップが立ち上がります。${p.kind==='W'?'(目的地も推定位置です)':''}</div><div class="routesmall">開かない場合は、右上のメニューから『ブラウザで開く』を選んでください。</div>
   <h4>由緒・史実</h4><p>${esc(p.why)}</p>
   <h4>検証・考証</h4><p>${esc(p.check)}</p>
@@ -466,7 +471,14 @@ function openSheet(p){
   <div class="foot">年の扱い: ${esc(p.year_conf)}。「頃」は出典で年月日が確定できないもの。文章はWikipediaなどの出典を読んで要約したもので、現地の駒札・看板の文面は転載していません。</div>`;
   sh.classList.add('open');
   sh.querySelector('.x').onclick=closeSheet;
-  sh.querySelectorAll('a.route').forEach(a=>a.onclick=e=>{e.preventDefault();window.location.href=a.href});
+  sh.querySelectorAll('a.route').forEach(a=>a.onclick=e=>{
+    e.preventDefault();
+    const q=state.sel||p;                // 押下の瞬間に、選択中のピンから座標を取り直す
+    const url=routeURL(q);
+    console.log('[route]',q.name,q.lat,q.lon,url);
+    if(!url){toast('この場所の座標を取得できませんでした');return}
+    window.location.href=url;
+  });
   sh.scrollTop=0;
   {const sz=map.getSize(),z=map.getZoom();const off=innerWidth>=900?L.point(sz.x*0.2,0):L.point(0,sz.y*0.22);
    map.panTo(map.unproject(map.project(L.latLng(p.lat,p.lon),z).add(off),z),{animate:true});}
