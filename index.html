@@ -450,6 +450,8 @@ function closeSheet(){
   $('#sheet').classList.remove('open');
 }
 /* ---------------- 現在地 ---------------- */
+const LOC_DENIED='ブラウザの位置情報が許可されていません。Safari/Chromeのサイト設定で許可してください';
+const LOC_FAIL='現在地を取得できませんでした。屋外で再度お試しください';
 const LOCMSG='現在地はスマホのブラウザ(Safari/Chrome)で開くと使えます。右上のメニューから『ブラウザで開く』を選んでください';
 let locLayer=null;
 function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';clearTimeout(toast._t);toast._t=setTimeout(()=>e.style.display='none',7000)}
@@ -466,7 +468,7 @@ function locate(){
     map.setView(ll,Math.max(map.getZoom(),16));
     const inKyoto=ll[0]>34.95&&ll[0]<35.08&&ll[1]>135.70&&ll[1]<135.82;
     toast(inKyoto?'現在地を表示しました':'現在地は洛中の外です(地図の範囲外)');
-  },err=>{toast(LOCMSG)},{enableHighAccuracy:true,timeout:12000,maximumAge:30000});
+  },err=>{toast(err&&err.code===1?LOC_DENIED:LOC_FAIL)},{enableHighAccuracy:true,timeout:12000,maximumAge:30000});
 }
 </script>
 </body>
