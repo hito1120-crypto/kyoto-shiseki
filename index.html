@@ -37,12 +37,12 @@ body.inapp{--bn:46px}
 .chip i{width:12px;height:12px;border-radius:50%;display:inline-block}
 .chip i.R{background:var(--red)} .chip i.O{background:var(--orange)} .chip i.W{background:#fff;border:2px dashed #444}
 select.chip{appearance:auto;padding-right:6px}
-#legend{top:calc(max(8px,env(safe-area-inset-top)) + 104px + var(--bn,0px));left:8px;background:rgba(255,253,249,.96);border-radius:12px;padding:9px 11px;box-shadow:var(--shadow);font-size:12px;line-height:1.55;max-width:min(300px,calc(100vw - 16px))}
+#legend{top:calc(max(8px,env(safe-area-inset-top)) + 104px + var(--bn,0px));left:8px;background:rgba(255,253,249,.96);border-radius:12px;padding:9px 11px;box-shadow:var(--shadow);font-size:13px;line-height:1.55;max-width:min(320px,calc(100vw - 16px))}
 #legend[hidden]{display:none}
 #legend div{display:flex;gap:8px;align-items:center}
 #legend i{flex:none;width:12px;height:12px;border-radius:50%}
 #legend i.R{background:var(--red)} #legend i.O{background:var(--orange)} #legend i.Y{background:#f2c92b;opacity:.5} #legend i.W{background:#fff;border:2px dashed #444}
-#legend .howto{display:block;margin-top:7px;padding-top:6px;border-top:1px solid var(--line);font-size:12px;line-height:1.55}
+#legend .howto{display:block;margin-top:7px;padding-top:6px;border-top:1px solid var(--line);font-size:13px;line-height:1.55}
 #legend .howto ul{margin:3px 0 0;padding-left:1.1em}
 #legend .howto li{margin-bottom:2px}
 body.video #legend .howto{display:none}
@@ -91,7 +91,7 @@ body.video #credit{display:none}
 #sheet .route{display:flex;align-items:center;justify-content:center;min-height:52px;margin:6px 0 2px;border-radius:12px;background:#2b2620;color:#fff;font-weight:700;font-size:16px;text-decoration:none}
 #sheet .route:active{background:#444}
 #sheet .route.apple{background:#fff;color:#26221d;border:2px solid #2b2620;margin-top:8px}
-#sheet .routenote{font-size:11.5px;color:var(--sub);margin:2px 2px 0}
+#sheet .routenote{font-size:13px;line-height:1.6;color:var(--sub);margin:2px 2px 0}
 #sheet .est{margin:0 0 8px;padding:7px 10px;border:1px dashed #444;border-radius:10px;background:#fff;font-size:13.5px;font-weight:600}
 #sheet h4{margin:14px 0 4px;font-size:13px;letter-spacing:.05em;color:var(--sub)}
 #sheet p{margin:0;font-size:14.5px;line-height:1.75}
@@ -180,7 +180,7 @@ body.video .pin.dim{opacity:.66}
   <div class="no-v"><i class="Y"></i>黄: 看板・駒札のみ(今回は対象外)</div>
   <div><i class="W"></i>白破線: 跡地で位置が推定</div>
   <div class="howto"><b>使い方</b>
-    <ul><li>📍を押すと由緒が出ます。「ここへの経路」を押すと、Googleマップが立ち上がり、現在地からの徒歩ルートが出ます。</li>
+    <ul><li>📍を押して『ここへの経路』を押すと、Googleマップが立ち上がり、現在地からの徒歩ルートが出ます。</li>
     <li>現在地と経路は、スマホのSafari/Chromeで開くと使えます。</li>
     <li>Threadsなどのアプリ内で開いた場合は、右上のメニューから「ブラウザで開く」を選んでください。</li></ul></div>
   <p>淡い色は、すでに出てきた史跡です。下のスライダーか▶で時代順にたどれます。<a href="kyoto_bakumatsu_32s.mp4" target="_blank" rel="noopener">32秒の動画</a></p>
@@ -264,7 +264,9 @@ function init(d){
   $('#btn-legend').onclick=e=>{const l=$('#legend');l.hidden=!l.hidden;e.currentTarget.setAttribute('aria-pressed',!l.hidden)};
   $('#btn-loc').onclick=locate;
   $('#inapp-x').onclick=()=>{$('#inapp').hidden=true;document.body.classList.remove('inapp')};
+  const closeLegend=()=>{const l=$('#legend');if(!l.hidden){l.hidden=true;$('#btn-legend').setAttribute('aria-pressed','false')}};
   map.on('click',()=>closeSheet());
+  if(!VIDEO)map.on('dragstart zoomstart',closeLegend);
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeSheet()});
   if(VIDEO){
     $('#legend').hidden=false;
@@ -447,6 +449,7 @@ async function render(tau){
 /* ---------------- 詳細シート ---------------- */
 function openSheet(p){
   stopPlay();
+  {const l=$('#legend');if(!l.hidden){l.hidden=true;$('#btn-legend').setAttribute('aria-pressed','false')}}
   state.sel=p;pins.forEach(q=>q.el()&&(q.el().classList.toggle('sel',q===p),q.el().style.setProperty('--hs',q===p?1.35:1)));
   const sh=$('#sheet');
   const ev=D.events.find(e=>e.id===p.event_id);
@@ -456,7 +459,7 @@ function openSheet(p){
   <div class="badges"><span class="badge"><i class="${p.kind}"></i>${KIND[p.kind]}</span><span class="badge">${esc(yr)}</span><span class="badge conf-${esc(p.conf)}">確度: ${esc(p.conf)}</span>${ev?`<span class="badge">${esc(ev.title)}</span>`:''}${p.groups.map(g=>`<span class="badge">${esc(g)}</span>`).join('')}</div>
   ${p.kind==='W'?'<p class="est">位置は推定です。実際の場所と少しずれている可能性があります。</p>':''}
   <a class="route" href="https://www.google.com/maps/dir/?api=1&destination=${p.lat},${p.lon}&travelmode=walking">ここへの経路(徒歩)</a>${IOS?`<a class="route apple" href="https://maps.apple.com/?daddr=${p.lat},${p.lon}&dirflg=w">Appleマップで開く</a>`:''}
-  <div class="routenote">${INAPP?'開かない場合は右上のメニューから『ブラウザで開く』を選んでください。':'開かない場合はブラウザで開いてください。'}${p.kind==='W'?'<br>※ 経路の目的地も推定位置です。':''}</div>
+  <div class="routenote">押すとGoogleマップが立ち上がります。開かない場合は、右上のメニューから『ブラウザで開く』を選んでください。${p.kind==='W'?'<br>※ 経路の目的地も推定位置です。':''}</div>
   <h4>由緒・史実</h4><p>${esc(p.why)}</p>
   <h4>検証・考証</h4><p>${esc(p.check)}</p>
   ${p.rumor?`<div class="rumor"><h4>噂・伝承(史実とは別)</h4><p>${esc(p.rumor)}</p></div>`:''}
